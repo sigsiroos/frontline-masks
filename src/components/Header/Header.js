@@ -76,7 +76,7 @@ export default function Header(props) {
         </div>
         {/* <Hidden smDown implementation="css">
           {rightLinks}
-        </Hidden> */}
+        </Hidden>
         <Hidden mdUp>
           <IconButton
             color="inherit"
@@ -85,9 +85,9 @@ export default function Header(props) {
           >
             <Menu />
           </IconButton>
-        </Hidden>
+        </Hidden> */}
       </Toolbar>
-      <Hidden mdUp implementation="js">
+      {/* <Hidden mdUp implementation="js">
         <Drawer
           variant="temporary"
           anchor={"right"}
@@ -102,7 +102,7 @@ export default function Header(props) {
             {rightLinks}
           </div>
         </Drawer>
-      </Hidden>
+      </Hidden> */}
     </AppBar>
   );
 }
