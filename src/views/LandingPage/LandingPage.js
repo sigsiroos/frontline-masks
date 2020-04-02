@@ -73,7 +73,8 @@ export default function LandingPage(props) {
           <WorkSection />
         </div>
       </div>
-      <Footer />
+      <br/>
+      {/* <Footer /> */}
     </div>
   );
 }
