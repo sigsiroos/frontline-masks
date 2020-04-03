@@ -23,11 +23,12 @@ export default function ProductSection() {
         <GridItem xs={12} sm={12} md={8}>
           <h2 className={classes.title}>Let{"'"}s talk product</h2>
           <h5 className={classes.description}>
-            This is the paragraph where you can write more details about your
+            {/* This is the paragraph where you can write more details about your
             product. Keep you user engaged by providing meaningful information.
             Remember that by this time, the user is curious, otherwise he wouldn
             {"'"}t scroll to get here. Add a button if you want the user to see
-            more.
+            more. */}
+            Want to help our cause?   We are working to get a hold on all of the price-gouging etc... going on in the marketplace and secure more favorable pricing through our network to maximize the amount of masks and protective gear that our healthcare workers are receiving than you would on the open market or with just a small order.  The Healthcare system and Government is not moving fast enough and we’re trying to help get healthcare workers the gear that they desperately need.  Prices are changing constantly, sea freight is taking too long for supplies which are needed today.  Air freight is in limited supply coming from overseas there are a lack of flights due to travel restrictions.  This is a multi-layered problem we are trying to solve with healthcare workers caught in the middle.  Help us help them.
           </h5>
         </GridItem>
       </GridContainer>
