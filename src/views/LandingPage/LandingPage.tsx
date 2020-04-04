@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
@@ -22,7 +22,7 @@ import styles from "assets/jss/material-kit-react/views/landingPage.js";
 import ProductSection from "./Sections/ProductSection.js";
 import TeamSection from "./Sections/TeamSection.js";
 import WorkSection from "./Sections/WorkSection.js";
-import { contentfulClient } from '../../lib/contentful';
+import { useContentfulContext } from '../../lib/contentful';
 
 // const dashboardRoutes = [];
 
@@ -34,13 +34,7 @@ export default function LandingPage(props: any) {
   const classes = useStyles();
   const { ...rest } = props;
 
-  useEffect(() => {
-    // (async () => {
-
-    //   await contentfulClient.get
-    // })();
-    console.log('hola')
-  }, []);
+  const { landingData } = useContentfulContext();
 
   return (
     <div>
@@ -56,14 +50,14 @@ export default function LandingPage(props: any) {
         }}
         {...rest}
       />
-      <Parallax /* filter */ image={require("assets/img/landing-bg.jpg")}>
+      <Parallax image={landingData?.fields.background.fields.file.url}>
         <div className={classes.container}>
           <GridContainer>
             <GridItem xs={12} sm={12} md={6}>
-              <h1 className={classes.title}>Getting PPEs to those who need it most</h1>
+              <h1 className={classes.title}>{landingData?.fields.title}</h1>
               <h4>
                 {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. */}
-                Frontline healthcare workers are the heroes of our time in the global battle against COVID-19. These fighters are facing dire shortages of Personal Protective Equipment (PPE). Our team is coordinating with manufacturers across the globe to supply US healthcare workers with critical equipment at cost by eliminating price-gouging practices. Help us in our mission to get these heroes the supplies they urgently need.
+                {landingData?.fields.tagline}
               </h4>
               {/* <br />
               <Button
