@@ -11,11 +11,11 @@ const contentful = createClient({
 exports.handler = (event, context, callback) => {
   contentful
     .getEntry('7pAhu0kWc7Q8IBzBHiBVns')
-    .then(/** @param {import('../src/types').LandingData} entry */ body => {
+    .then(/** @param {import('../src/types').LandingData} entry */ entry => {
       callback(null, {
         statusCode: 200,
         headers: { 'Access-Control-Allow-Origin': DOMAIN },
-        body,
+        body: JSON.stringify(entry),
       });
     });
 };
