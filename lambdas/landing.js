@@ -14,7 +14,8 @@ exports.handler = (event, context, callback) => {
     .then(/** @param {import('../src/types').LandingData} entry */ entry => {
       callback(null, {
         statusCode: 200,
-        headers: { 'Access-Control-Allow-Origin': REACT_APP_DOMAIN },
+        // maybe dont use this since localhost needs access during dev
+        // headers: { 'Access-Control-Allow-Origin': REACT_APP_DOMAIN },
         body: JSON.stringify(entry),
       });
     });
