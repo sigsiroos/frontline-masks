@@ -41,13 +41,27 @@ export const parallaxTextSlideIn = css`
 `;
 
 const sectionsFadeInKeyframes = keyframes`
-  0% { opacity: 0 }
-  100% { opacity: 1 }
+  0% {
+    opacity: 0;
+    margin-top: 60px;
+  }
+  50% {
+    opacity: 1;
+    margin-top: 0;
+  }
+  100% {
+    opacity: 1;
+    margin-top: -60px;
+  }
 `;
 
 export const sectionsFadeIn = css`
   animation-fill-mode: both;
   animation-delay: ${2 * fadeInLapse}s;
   animation-name: ${sectionsFadeInKeyframes};
+  /* animation-timing-function: linear; */
   animation-duration: ${fadeInLapse}s;
+  @media (min-width: 960px) {
+    animation-duration: ${fadeInLapse / 2}s;
+  }
 `;
