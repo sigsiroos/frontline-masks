@@ -16,6 +16,7 @@ exports.handler = (event, context, callback) => {
         statusCode: 200,
         // maybe dont use this since localhost needs access during dev
         // headers: { 'Access-Control-Allow-Origin': REACT_APP_DOMAIN },
+        headers: { 'Access-Control-Allow-Origin': '*' },
         body: JSON.stringify(entry),
       });
     });

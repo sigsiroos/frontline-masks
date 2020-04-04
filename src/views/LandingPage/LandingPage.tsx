@@ -41,7 +41,7 @@ export default function LandingPage(props: any) {
       <Header
         color="transparent"
         // routes={dashboardRoutes}
-        brand="Company Name"
+        brand="FrontlineMasks"
         rightLinks={<HeaderLinks />}
         fixed
         changeColorOnScroll={{
