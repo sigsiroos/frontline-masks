@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
@@ -10,7 +10,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Header from "components/Header/Header.js";
 import Footer from "components/Footer/Footer.js";
 import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
+// import GridItem from "components/Grid/GridItem.js";
+import GridItemUntyped from "components/Grid/GridItem.js";
 import Button from "components/CustomButtons/Button.js";
 import HeaderLinks from "components/Header/HeaderLinks.js";
 import Parallax from "components/Parallax/Parallax.js";
@@ -21,19 +22,31 @@ import styles from "assets/jss/material-kit-react/views/landingPage.js";
 import ProductSection from "./Sections/ProductSection.js";
 import TeamSection from "./Sections/TeamSection.js";
 import WorkSection from "./Sections/WorkSection.js";
+import { contentfulClient } from '../../lib/contentful';
 
-const dashboardRoutes = [];
+// const dashboardRoutes = [];
 
-const useStyles = makeStyles(styles);
+const GridItem = GridItemUntyped as React.FC<any>;
 
-export default function LandingPage(props) {
+const useStyles = makeStyles(styles as Parameters<typeof makeStyles>[0]);
+
+export default function LandingPage(props: any) {
   const classes = useStyles();
   const { ...rest } = props;
+
+  useEffect(() => {
+    // (async () => {
+
+    //   await contentfulClient.get
+    // })();
+    console.log('hola')
+  }, []);
+
   return (
     <div>
       <Header
         color="transparent"
-        routes={dashboardRoutes}
+        // routes={dashboardRoutes}
         brand="Company Name"
         rightLinks={<HeaderLinks />}
         fixed
