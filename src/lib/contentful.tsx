@@ -12,7 +12,7 @@ function useDefaultContext() {
           await import('../utils')
         ).wait(
           await (
-            await fetch('https://mystifying-kepler-65f0e0.netlify.com/.netlify/functions/landing')
+            await fetch(`${process.env.REACT_APP_DOMAIN}/.netlify/functions/landing`)
           ).json() as LandingData,
           420
         )

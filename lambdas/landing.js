@@ -1,6 +1,6 @@
 const { createClient } = require('contentful');
 
-const { CONTENTFUL_SPACE, CONTENTFUL_ACCESS_TOKEN, DOMAIN } = process.env;
+const { CONTENTFUL_SPACE, CONTENTFUL_ACCESS_TOKEN, REACT_APP_DOMAIN } = process.env;
 
 /** @see {@tutorial https://app.contentful.com/spaces/ab792hsrcg3y/home} */
 const contentful = createClient({
@@ -14,7 +14,7 @@ exports.handler = (event, context, callback) => {
     .then(/** @param {import('../src/types').LandingData} entry */ entry => {
       callback(null, {
         statusCode: 200,
-        headers: { 'Access-Control-Allow-Origin': DOMAIN },
+        headers: { 'Access-Control-Allow-Origin': REACT_APP_DOMAIN },
         body: JSON.stringify(entry),
       });
     });
