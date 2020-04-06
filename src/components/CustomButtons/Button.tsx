@@ -12,11 +12,11 @@ import Button from "@material-ui/core/Button";
 
 import buttonStyle from "assets/jss/material-kit-react/components/buttonStyle.js";
 
-const makeComponentStyles = makeStyles(() => ({
+const makeComponentStyles = makeStyles((() => ({
   ...buttonStyle
-}));
+})) as Parameters<typeof makeStyles>[0]);
 
-const RegularButton = React.forwardRef((props, ref) => {
+const RegularButton = React.forwardRef((props: any, ref) => {
   const {
     color,
     round,

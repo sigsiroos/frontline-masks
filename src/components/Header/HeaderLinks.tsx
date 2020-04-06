@@ -16,13 +16,14 @@ import { Apps, CloudDownload } from "@material-ui/icons";
 
 // core components
 import CustomDropdown from "components/CustomDropdown/CustomDropdown.js";
-import Button from "components/CustomButtons/Button.js";
+import ButtonUntyped from "components/CustomButtons/Button";
 
 import styles from "assets/jss/material-kit-react/components/headerLinksStyle.js";
 
-const useStyles = makeStyles(styles);
+const Button: React.FC<any> = ButtonUntyped;
+const useStyles = makeStyles(styles as Parameters<typeof makeStyles>[0]);
 
-export default function HeaderLinks(props) {
+const HeaderLinks: React.FC = props => {
   const classes = useStyles();
   return (
     <List className={classes.list}>
@@ -67,6 +68,16 @@ export default function HeaderLinks(props) {
           className={classes.navLink}
         >
           Request PPE
+        </Button>
+      </ListItem>
+      <ListItem className={classes.listItem}>
+        <Button
+          component={Link}
+          to="/mission"
+          color="transparent"
+          className={classes.navLink}
+        >
+          Mission
         </Button>
       </ListItem>
       {/* <ListItem className={classes.listItem}>
@@ -128,3 +139,5 @@ export default function HeaderLinks(props) {
     </List>
   );
 }
+
+export default HeaderLinks;

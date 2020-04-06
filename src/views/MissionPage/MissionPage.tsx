@@ -24,11 +24,9 @@ import { sectionsFadeIn } from "./Parallax/startupAnimation";
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 
-// const dashboardRoutes = [];
-
 const useStyles = makeStyles(styles as Parameters<typeof makeStyles>[0]);
 
-export default function LandingPage(props: any) {
+export default function MissionPage(props: any) {
   const classes = useStyles();
   const { ...rest } = props;
 
@@ -47,15 +45,6 @@ export default function LandingPage(props: any) {
         {...rest}
       />
       <LandingPageParallax />
-      <div className={classNames(classes.main, classes.mainRaised)} css={sectionsFadeIn}>
-        <div className={classes.container}>
-          <ProductSection />
-          <TeamSection />
-          <WorkSection />
-        </div>
-      </div>
-      <br/>
-      {/* <Footer /> */}
     </div>
   );
 }

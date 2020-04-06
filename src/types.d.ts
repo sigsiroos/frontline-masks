@@ -16,4 +16,4 @@ declare type ResolveType<T> = T extends Promise<infer R> ? R : T;
  * @see {@link https://app.contentful.com/spaces/ab792hsrcg3y/entries/7pAhu0kWc7Q8IBzBHiBVns}
  * @see {@link lambdas/landing.js}
  */
-type LandingData = Entry<{ title: string, tagline: string, background: Asset }>;
+declare type LandingData = Entry<{ title: string, tagline: string, background: Asset }>;
