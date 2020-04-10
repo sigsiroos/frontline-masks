@@ -1,3 +1,4 @@
+import { makeStyles } from "@material-ui/core/styles";
 import { title } from "assets/jss/material-kit-react.js";
 
 const productStyle = {
@@ -15,6 +16,6 @@ const productStyle = {
   description: {
     color: "#999"
   }
-};
+} as Parameters<typeof makeStyles>[0];
 
 export default productStyle;

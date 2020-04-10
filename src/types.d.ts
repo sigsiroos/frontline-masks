@@ -12,8 +12,8 @@ declare type ResolveType<T> = T extends Promise<infer R> ? R : T;
 
 declare type GlobalData = {
   companyName: string,
-  companyLogoWhite: string,
-  companyLogoOrange: string,
+  companyLogoWhite: Asset,
+  companyLogoOrange: Asset,
   instagram: string,
   goFundMe: string,
   pages: any[],

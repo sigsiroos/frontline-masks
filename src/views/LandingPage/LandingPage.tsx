@@ -24,7 +24,7 @@ import { sectionsFadeIn } from "./Parallax/startupAnimation";
 import { useContentfulContext } from '../../lib/contentful';
 
 /** @jsx jsx */
-import { jsx } from '@emotion/core';
+import { jsx, css } from '@emotion/core';
 
 // const dashboardRoutes = [];
 
@@ -37,7 +37,7 @@ export default function LandingPage(props: any) {
   const { landing } = useContentfulContext();
 
   return (
-    <div>
+    <div css={css`max-width: 100%; overflow-x: hidden;`}>
       <Header
         color="transparent"
         // routes={dashboardRoutes}

@@ -11,6 +11,8 @@ import Header from "components/Header/Header";
 import Footer from "components/Footer/Footer.js";
 import HeaderLinks from "components/Header/HeaderLinks";
 
+import ProductSection from "./Sections/ProductSection";
+
 import styles from "assets/jss/material-kit-react/views/landingPage.js";
 
 import { LandingPageParallax } from './Parallax';
@@ -39,6 +41,12 @@ export default function MissionPage(props: any) {
         {...rest}
       />
       <LandingPageParallax />
+      <div className={classNames(classes.main, classes.mainRaised)}>
+        <div className={classes.container}>
+          <ProductSection />
+        </div>
+      </div>
+      <br/>
     </div>
   );
 }

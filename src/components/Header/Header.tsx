@@ -41,7 +41,6 @@ const Header: React.FC<{
   },
 }> = props => {
   const { globals } = useContentfulContext();
-  console.log('co', globals);
 
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -93,6 +92,7 @@ const Header: React.FC<{
       to="/"
       >
       {brand}
+      {/* <img src={globals?.fields.companyLogoOrange.fields.file.url} alt='FrontlineMasks' /> */}
     </Button>
   );
 
@@ -125,7 +125,7 @@ const Header: React.FC<{
       <Hidden mdUp implementation="js">
         <Drawer
           variant="temporary"
-          anchor={"right"}
+          anchor="right"
           open={mobileOpen}
           classes={{
             paper: classes.drawerPaper

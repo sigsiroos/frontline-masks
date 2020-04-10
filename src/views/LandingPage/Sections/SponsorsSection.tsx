@@ -26,7 +26,7 @@ import { jsx, css } from '@emotion/core';
 
 const useStyles = makeStyles(styles as Parameters<typeof makeStyles>[0]);
 
-export default function TeamSection() {
+export default function SponsorsSection() {
   const { landing } = useContentfulContext();
 
   const classes = useStyles();
@@ -42,7 +42,7 @@ export default function TeamSection() {
       <div>
         <GridContainer css={css`justify-content: center;`}>
           {landing?.fields.sponsors.map(sponsor => (
-            <GridItem xs={12} sm={12} md={4} component="a" href={sponsor.fields.website} target="_blank">
+            <GridItem xs={12} sm={12} md={4} component="a" href={sponsor.fields.website} target="_blank" key={sponsor.sys.id}>
               <Card plain>
                 <GridItem xs={12} sm={12} md={6} className={classes.itemGrid}>
                   <img
@@ -55,11 +55,11 @@ export default function TeamSection() {
                     `}
                   />
                 </GridItem>
-                <h4 className={classes.cardTitle}>
+                {/* <h4 className={classes.cardTitle}>
                   {sponsor.fields.name}
-                  {/* <br />
-                  <small className={classes.smallTitle}>Model</small> */}
-                </h4>
+                  <br />
+                  <small className={classes.smallTitle}>Model</small>
+                </h4> */}
                 {/* <CardBody>
                   <p className={classes.description}>
                     You can write here details about one of your team members. You
