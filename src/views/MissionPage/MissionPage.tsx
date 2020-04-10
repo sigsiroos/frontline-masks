@@ -15,12 +15,6 @@ import styles from "assets/jss/material-kit-react/views/landingPage.js";
 
 import { LandingPageParallax } from './Parallax';
 
-// Sections for this page
-import ProductSection from "./Sections/ProductSection.js";
-import TeamSection from "./Sections/TeamSection.js";
-import WorkSection from "./Sections/WorkSection.js";
-import { sectionsFadeIn } from "./Parallax/startupAnimation";
-
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 

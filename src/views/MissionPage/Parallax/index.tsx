@@ -5,7 +5,6 @@ import GridItemUntyped from "components/Grid/GridItem.js";
 import Parallax from "components/Parallax/Parallax.js";
 import styles from "assets/jss/material-kit-react/views/landingPage.js";
 import { useContentfulContext } from '../../../lib/contentful';
-import { parallaxFadeIn, parallaxTextSlideIn } from './startupAnimation';
 
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
