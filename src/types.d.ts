@@ -21,12 +21,23 @@ declare type GlobalData = {
 
 declare type GlobalDataEntry = Entry<GlobalData>;
 
+declare interface SponsorData {
+  logo: Asset
+  name: string
+  website: string
+}
+
 /**
  * the data for the landing view from contentful.
  * includes title, tagline, and background image
  * @see {@link https://app.contentful.com/spaces/ab792hsrcg3y/entries/7pAhu0kWc7Q8IBzBHiBVns}
  * @see {@link lambdas/landing.js}
  */
-declare type LandingData = { title: string, tagline: string, background: Asset };
+declare interface LandingData {
+  title: string
+  tagline: string
+  background: Asset
+  sponsors: Entry<SponsorData>[]
+};
 
 declare type LandingDataEntry = Entry<LandingData>;

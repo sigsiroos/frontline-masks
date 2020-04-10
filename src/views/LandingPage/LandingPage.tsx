@@ -17,9 +17,11 @@ import { LandingPageParallax } from './Parallax';
 
 // Sections for this page
 import ProductSection from "./Sections/ProductSection.js";
-import TeamSection from "./Sections/TeamSection.js";
+import SponsorsSection from "./Sections/SponsorsSection";
 import WorkSection from "./Sections/WorkSection.js";
 import { sectionsFadeIn } from "./Parallax/startupAnimation";
+
+import { useContentfulContext } from '../../lib/contentful';
 
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
@@ -31,6 +33,8 @@ const useStyles = makeStyles(styles as Parameters<typeof makeStyles>[0]);
 export default function LandingPage(props: any) {
   const classes = useStyles();
   const { ...rest } = props;
+
+  const { landing } = useContentfulContext();
 
   return (
     <div>
@@ -50,7 +54,7 @@ export default function LandingPage(props: any) {
       <div className={classNames(classes.main, classes.mainRaised)} css={sectionsFadeIn}>
         <div className={classes.container}>
           <ProductSection />
-          <TeamSection />
+          {landing?.fields.sponsors?.length ? <SponsorsSection /> : undefined}
           <WorkSection />
         </div>
       </div>
@@ -58,4 +62,4 @@ export default function LandingPage(props: any) {
       {/* <Footer /> */}
     </div>
   );
-}
+};

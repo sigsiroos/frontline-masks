@@ -21,17 +21,17 @@ export const getEntry = <
   path: string
   queryStringParameters: object
 }> => async (event, context, callback) => {
-  const url = new URL(event.headers.referer);
-  const thisRequestIsBeingMadeFromASafeOrigin = url.hostname.match(/frontlinemasks\.netlify\.com$/);
+  const url = event.headers.referer ? new URL(event.headers.referer) : { hostname: 'localhost' };
+  const thisRequestIsBeingMadeFromASafeOrigin =
+    url.hostname.match(/frontlinemasks\.netlify\.com$/) ||
+    (url.hostname === 'localhost'); // localhost isnt actually that safe lol but oh wells we need access from our dev env
 
   const headers = {
     /**
      * @see {@tutorial https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin}
      * let's only allow requests from our own sites
      */
-    'Access-Control-Allow-Origin': thisRequestIsBeingMadeFromASafeOrigin
-      ? event.headers.referer
-      : 'null',
+    'Access-Control-Allow-Origin': thisRequestIsBeingMadeFromASafeOrigin ? '*' : 'null',
   };
 
   try {

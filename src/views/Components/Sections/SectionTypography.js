@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 // core components
 import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
+import GridItem from "components/Grid/GridItem";
 import Small from "components/Typography/Small.js";
 import Danger from "components/Typography/Danger.js";
 import Warning from "components/Typography/Warning.js";

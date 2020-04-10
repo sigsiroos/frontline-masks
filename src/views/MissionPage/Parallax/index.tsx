@@ -1,15 +1,13 @@
 import React from 'react';
 import { makeStyles } from "@material-ui/core/styles";
 import GridContainer from "components/Grid/GridContainer.js";
-import GridItemUntyped from "components/Grid/GridItem.js";
+import GridItem from "components/Grid/GridItem";
 import Parallax from "components/Parallax/Parallax.js";
 import styles from "assets/jss/material-kit-react/views/landingPage.js";
 import { useContentfulContext } from '../../../lib/contentful';
 
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
-
-const GridItem = GridItemUntyped as React.FC<any>;
 
 const useStyles = makeStyles(styles as Parameters<typeof makeStyles>[0]);
 

@@ -7,7 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import LocationOn from "@material-ui/icons/LocationOn";
 // core components
 import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
+import GridItem from "components/Grid/GridItem";
 import Card from "components/Card/Card.js";
 
 import image1 from "assets/img/bg.jpg";

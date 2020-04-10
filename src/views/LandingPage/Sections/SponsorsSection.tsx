@@ -8,7 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 // core components
 import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
+import GridItem from "components/Grid/GridItem";
 import Button from "components/CustomButtons/Button";
 import Card from "components/Card/Card.js";
 import CardBody from "components/Card/CardBody.js";
@@ -19,10 +19,15 @@ import styles from "assets/jss/material-kit-react/views/landingPageSections/team
 import team1 from "assets/img/faces/avatar.jpg";
 import team2 from "assets/img/faces/christian.jpg";
 import team3 from "assets/img/faces/kendall.jpg";
+import { useContentfulContext } from "lib/contentful";
 
-const useStyles = makeStyles(styles);
+const useStyles = makeStyles(styles as Parameters<typeof makeStyles>[0]);
 
 export default function TeamSection() {
+  const { landing } = useContentfulContext();
+
+  console.log(landing)
+
   const classes = useStyles();
   const imageClasses = classNames(
     classes.imgRaised,
@@ -31,7 +36,7 @@ export default function TeamSection() {
   );
   return (
     <div className={classes.section}>
-      <h2 className={classes.title}>Here is our team</h2>
+      <h2 className={classes.title}>Sponsored by</h2>
       <div>
         <GridContainer>
           <GridItem xs={12} sm={12} md={4}>

@@ -5,6 +5,8 @@ import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 
+import type { GridProps } from '@material-ui/core';
+
 const styles = {
   grid: {
     position: "relative",
@@ -16,9 +18,9 @@ const styles = {
   }
 };
 
-const useStyles = makeStyles(styles);
+const useStyles = makeStyles(styles as Parameters<typeof makeStyles>[0]);
 
-export default function GridItem(props) {
+const GridItem: React.FC<GridProps> = function GridItem(props) {
   const classes = useStyles();
   const { children, className, ...rest } = props;
   return (
@@ -27,6 +29,8 @@ export default function GridItem(props) {
     </Grid>
   );
 }
+
+export default GridItem;
 
 GridItem.defaultProps = {
   className: ""

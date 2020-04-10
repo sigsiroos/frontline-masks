@@ -18,7 +18,7 @@ import LibraryBooks from "@material-ui/icons/LibraryBooks";
 import Close from "@material-ui/icons/Close";
 // core components
 import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
+import GridItem from "components/Grid/GridItem";
 import Button from "components/CustomButtons/Button";
 
 import styles from "assets/jss/material-kit-react/views/componentsSections/javascriptStyles.js";
