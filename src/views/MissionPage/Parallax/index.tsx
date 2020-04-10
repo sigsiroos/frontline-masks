@@ -22,9 +22,9 @@ export const LandingPageParallax: React.FC = function LandingPageParallax() {
         <GridContainer>
           <GridItem xs={12} sm={12} md={6}>
             <h1 className={classes.title}>Mission</h1>
-            <h4>
+            {/* <h4>
               This is the Mission
-            </h4>
+            </h4> */}
             {/* <br />
             <Button
               color="danger"

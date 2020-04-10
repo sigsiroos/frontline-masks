@@ -35,7 +35,7 @@ export default function ProductSection() {
           </h5>
         </GridItem>
       </GridContainer>
-      <div>
+      {/* <div>
         <GridContainer>
           <GridItem xs={12} sm={12} md={4}>
             <InfoArea
@@ -65,7 +65,7 @@ export default function ProductSection() {
             />
           </GridItem>
         </GridContainer>
-      </div>
+      </div> */}
     </div>
   );
 }
