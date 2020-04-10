@@ -32,8 +32,9 @@
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/preset-env": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
     "@babel/preset-react": "^7.9.4",
+    "@babel/preset-typescript": "^7.9.0",
     "@types/aws-lambda": "^8.10.48",
     "@types/classnames": "^2.2.10",
     "@types/history": "^4.7.5",
@@ -43,11 +44,13 @@
     "eslint-plugin-react": "7.14.3",
     "gulp": "4.0.2",
     "gulp-append-prepend": "1.0.8",
+    "netlify-lambda": "^1.6.3",
     "prettier": "^2.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && gulp licenses",
+    "build": "react-scripts build && yarn build-lambdas",
+    "build-lambdas": "netlify-lambda build ./lambdas/functions",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "lint:check": "eslint . --ext=js,jsx;  exit 0",

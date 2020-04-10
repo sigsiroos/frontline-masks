@@ -1,0 +1,3 @@
+# https://github.com/netlify/netlify-lambda
+[build]
+  functions = "lambdas/dist" #  netlify-lambda reads this
