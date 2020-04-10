@@ -11,7 +11,7 @@ import Favorite from "@material-ui/icons/Favorite";
 import Header from "components/Header/Header";
 import Footer from "components/Footer/Footer.js";
 import Button from "components/CustomButtons/Button";
-import GridContainer from "components/Grid/GridContainer.js";
+import GridContainer from "components/Grid/GridContainer";
 import GridItem from "components/Grid/GridItem";
 import HeaderLinks from "components/Header/HeaderLinks";
 import NavPills from "components/NavPills/NavPills.js";

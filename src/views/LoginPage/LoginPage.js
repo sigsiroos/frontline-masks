@@ -10,7 +10,7 @@ import People from "@material-ui/icons/People";
 import Header from "components/Header/Header";
 import HeaderLinks from "components/Header/HeaderLinks";
 import Footer from "components/Footer/Footer.js";
-import GridContainer from "components/Grid/GridContainer.js";
+import GridContainer from "components/Grid/GridContainer";
 import GridItem from "components/Grid/GridItem";
 import Button from "components/CustomButtons/Button";
 import Card from "components/Card/Card.js";

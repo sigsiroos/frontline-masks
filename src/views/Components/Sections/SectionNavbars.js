@@ -11,7 +11,7 @@ import Face from "@material-ui/icons/Face";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import Explore from "@material-ui/icons/Explore";
 // core components
-import GridContainer from "components/Grid/GridContainer.js";
+import GridContainer from "components/Grid/GridContainer";
 import GridItem from "components/Grid/GridItem";
 import Header from "components/Header/Header";
 import CustomInput from "components/CustomInput/CustomInput.js";
