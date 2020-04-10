@@ -11,7 +11,7 @@ const contentful = createClient({
  * @see {@tutorial https://functions-playground.netlify.com/}
  * @type {(entryId: string) => import('aws-lambda').Handler}
  */
-exports = entryId => (event, context, callback) => {
+exports.getEntry = entryId => (event, context, callback) => {
   contentful
     .getEntry(entryId)
     .then(/** @param {import('../src/types').LandingData} entry */ entry => {

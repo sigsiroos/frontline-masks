@@ -1,0 +1,3 @@
+lts/*
+# https://docs.netlify.com/configure-builds/manage-dependencies/#node-js-and-javascript
+# https://github.com/nvm-sh/nvm#nvmrc
