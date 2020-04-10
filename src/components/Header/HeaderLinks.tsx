@@ -62,12 +62,12 @@ const HeaderLinks: React.FC = props => {
       </ListItem> */}
       <ListItem className={classes.listItem}>
         <Button
-          href="https://www.google.com"
+          component={Link}
+          to="/donate"
           color="transparent"
-          target="_blank"
           className={classes.navLink}
         >
-          Request PPE
+          Donate
         </Button>
       </ListItem>
       <ListItem className={classes.listItem}>

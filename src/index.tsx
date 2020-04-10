@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { createBrowserHistory } from "history";
-import { Router, Route, Switch } from "react-router-dom";
+import { Router, Route } from "react-router-dom";
 import { AnimatedSwitch } from 'react-router-transition';
 
 import "assets/scss/material-kit-react.scss?v=1.8.0";
@@ -9,6 +9,7 @@ import "assets/scss/material-kit-react.scss?v=1.8.0";
 // pages for this product
 import Components from "views/Components/Components.js";
 import LandingPage from "views/LandingPage/LandingPage";
+import DonatePage from "views/DonatePage/DonatePage";
 import MissionPage from "views/MissionPage/MissionPage";
 import ProfilePage from "views/ProfilePage/ProfilePage.js";
 import LoginPage from "views/LoginPage/LoginPage.js";
@@ -51,9 +52,10 @@ const Root: React.FC = function Root() {
         `}
       >
         {/* <Route path="/landing-page" component={LandingPage} /> */}
-        <Route path="/profile-page" component={ProfilePage} />
-        <Route path="/login-page" component={LoginPage} />
+        {/* <Route path="/profile-page" component={ProfilePage} /> */}
+        {/* <Route path="/login-page" component={LoginPage} /> */}
         {/* <Route path="/" component={Components} /> */}
+        <Route path="/donate" component={DonatePage} />
         <Route path="/mission" component={MissionPage} />
         <Route path="/" component={LandingPage} />
       </AnimatedSwitch>
