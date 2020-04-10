@@ -16,6 +16,7 @@ import Drawer from "@material-ui/core/Drawer";
 import Menu from "@material-ui/icons/Menu";
 // core components
 import styles from "assets/jss/material-kit-react/components/headerStyle.js";
+import { useContentfulContext } from "lib/contentful";
 
 const useStyles = makeStyles(styles as Parameters<typeof makeStyles>[0]);
 
@@ -39,6 +40,9 @@ const Header: React.FC<{
     color: "primary" | "info" | "success" | "warning" | "danger" | "transparent" | "white" | "rose" | "dark"
   },
 }> = props => {
+  const { globalData } = useContentfulContext();
+  console.log('co', globalData);
+
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   React.useEffect(() => {

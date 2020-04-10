@@ -10,6 +10,15 @@ declare type ArrayElement<ArrayType> =
 declare type ResolveType<T> = T extends Promise<infer R> ? R : T;
 /* ******************************** utility types ******************************** */
 
+declare type GlobalData = Entry<{
+  companyName: string,
+  companyLogoWhite: string,
+  companyLogoOrange: string,
+  instagram: string,
+  goFundMe: string,
+  pages: any[],
+}>;
+
 /**
  * the data for the landing view from contentful.
  * includes title, tagline, and background image
