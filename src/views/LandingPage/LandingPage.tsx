@@ -55,7 +55,7 @@ export default function LandingPage(props: any) {
         <div className={classes.container}>
           <ProductSection />
           {landing?.fields.sponsors?.length ? <SponsorsSection /> : undefined}
-          <WorkSection />
+          {/* <WorkSection /> */}
         </div>
       </div>
       <br/>

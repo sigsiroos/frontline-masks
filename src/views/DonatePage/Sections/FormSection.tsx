@@ -41,7 +41,7 @@ export default function FormSection() {
                   labelText="Your Email"
                   id="email"
                   formControlProps={{ fullWidth: true }}
-                  inputProps={{ name: 'email' }}
+                  inputProps={{ name: 'email', type: 'email' }}
                 />
               </GridItem>
               <GridItem xs={12} sm={12} md={4}>
@@ -49,7 +49,7 @@ export default function FormSection() {
                   labelText="Your Phone"
                   id="phone"
                   formControlProps={{ fullWidth: true }}
-                  inputProps={{ name: 'phone' }}
+                  inputProps={{ name: 'phone', type: 'tel' }}
                 />
               </GridItem>
               <CustomInput

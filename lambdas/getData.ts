@@ -5,22 +5,27 @@ import type { Handler } from 'aws-lambda';
 
 const { CONTENTFUL_SPACE, CONTENTFUL_ACCESS_TOKEN } = process.env;
 
-const contentful = createClient({
+export const contentful = createClient({
   space: CONTENTFUL_SPACE,
   accessToken: CONTENTFUL_ACCESS_TOKEN,
 });
 
-/** @see {@tutorial https://functions-playground.netlify.com/} */
-export const getEntry = <
-  EntryData
->(entryId: string): Handler<{
-  body: any,
-  headers: { [key: string]: string, referer: string },
+export interface NetlifyLambdaEvent {
+  body: any
+  headers: { [key: string]: string, referer: string }
   httpMethod: string
   isBase64Encoded: boolean
   path: string
-  queryStringParameters: object
-}> => async (event, context, callback) => {
+  queryStringParameters: { [key: string]: any }
+};
+
+/** @see {@tutorial https://functions-playground.netlify.com/} */
+export const getData = <Data>(
+  type: 'entry' | 'asset',
+  id: string
+): Handler<NetlifyLambdaEvent> => async (
+  event, context, callback
+) => {
   const url = event.headers.referer ? new URL(event.headers.referer) : { hostname: 'localhost' };
   const thisRequestIsBeingMadeFromASafeOrigin =
     url.hostname.match(/frontlinemasks\.netlify\.com$/) ||
@@ -35,18 +40,31 @@ export const getEntry = <
   };
 
   try {
-    const entry = await contentful.getEntry<EntryData>(entryId);
+    const responseData = await (
+      (type === 'entry')
+        ? id ? contentful.getEntry<Data>(id) : contentful.getEntries<Data>() :
+      (type === 'asset')
+        ? id ? contentful.getAsset(id) : contentful.getAssets() :
+      new Promise<undefined>((resolve, reject) => reject(new Error(`Invalid getData parameters: ${JSON.stringify([type, id])}`)))
+    );
+
     return callback(null, {
       statusCode: 200,
       headers,
-      body: JSON.stringify(entry),
+      body: JSON.stringify({
+        event, context, callback,
+        ...responseData
+      }),
     });
   } catch (err) {
     return callback(err, {
       /** @see {@tutorial https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/418} */
       statusCode: 418,
       headers,
-      body: JSON.stringify(err),
+      body: JSON.stringify({
+        ...event, context, callback,
+        err
+      }),
     });
   }
 };
