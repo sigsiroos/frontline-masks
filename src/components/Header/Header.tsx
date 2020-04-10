@@ -40,8 +40,8 @@ const Header: React.FC<{
     color: "primary" | "info" | "success" | "warning" | "danger" | "transparent" | "white" | "rose" | "dark"
   },
 }> = props => {
-  const { globalData } = useContentfulContext();
-  console.log('co', globalData);
+  const { globals } = useContentfulContext();
+  console.log('co', globals);
 
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = React.useState(false);

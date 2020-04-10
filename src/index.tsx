@@ -21,9 +21,9 @@ import { jsx, css } from '@emotion/core'
 const hist = createBrowserHistory();
 
 const Root: React.FC = function Root() {
-  const { landingData } = useContentfulContext();
+  const { globals, landing } = useContentfulContext();
 
-  if (!landingData) {
+  if (!globals || !landing) {
     return (
       <div css={css`
         position: fixed;

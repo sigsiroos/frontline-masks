@@ -1,34 +1,34 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState     , useContext } from 'react';
+import axios from 'axios';
 import { wait } from '../utils';
-import type { LandingData, GlobalData } from '../types';
+import type { GlobalDataEntry, LandingDataEntry } from '../types';
+
+const contentfulLambdas = axios.create({
+  baseURL: `${
+    (window.location.hostname === 'localhost')
+      ? process.env.REACT_APP_DOMAIN
+      : window.location.origin
+  }/.netlify/functions`,
+});
 
 function useDefaultContext() {
-  const [globalData, setGlobalData] = useState(undefined as GlobalData | undefined);
-  const [landingData, setLandingData] = useState(undefined as LandingData | undefined);
+  const [globals, setGlobals] = useState(undefined as GlobalDataEntry | undefined);
+  const [landing, setLanding] = useState(undefined as LandingDataEntry | undefined);
+
 
   useEffect(() => {
     (async () => {
-      const getGlobalDataJson = async () => {
-        const globalDataResponse = await fetch(`${process.env.REACT_APP_DOMAIN}/.netlify/functions/globals`);
-        const globalDataJson: GlobalData = await globalDataResponse.json();
-        return globalDataJson;
-      }
-
-      setGlobalData(await wait(getGlobalDataJson(), 420));
+      const getGlobalData = async () => (await (contentfulLambdas.get<GlobalDataEntry>('globals'))).data;
+      setGlobals(await wait(getGlobalData(), 420));
     })();
 
     (async () => {
-      const getLandingDataJson = async () => {
-        const landingDataResponse = await fetch(`${process.env.REACT_APP_DOMAIN}/.netlify/functions/landing`);
-        const landingDataJson: LandingData = await landingDataResponse.json();
-        return landingDataJson;
-      }
-
-      setLandingData(await wait(getLandingDataJson(), 420));
+      const getLandingData = async () => (await (contentfulLambdas.get<LandingDataEntry>('landing'))).data;
+      setLanding(await wait(getLandingData(), 420));
     })();
   }, []);
 
-  return { globalData, landingData };
+  return { globals, landing };
 };
 
 export const ContentfulContext = React.createContext({} as ReturnType<typeof useDefaultContext>);

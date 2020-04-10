@@ -15,12 +15,12 @@ const GridItem = GridItemUntyped as React.FC<any>;
 const useStyles = makeStyles(styles as Parameters<typeof makeStyles>[0]);
 
 export const LandingPageParallax: React.FC = function LandingPageParallax() {
-  const { landingData } = useContentfulContext();
+  const { landing } = useContentfulContext();
 
   const classes = useStyles();
 
   return (
-    <Parallax filter={window.innerWidth < 960} image={landingData?.fields.background.fields.file.url}>
+    <Parallax filter={window.innerWidth < 960} image={landing?.fields.background.fields.file.url}>
       <div className={classes.container}>
         <GridContainer>
           <GridItem xs={12} sm={12} md={6}>

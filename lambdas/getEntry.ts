@@ -1,7 +1,9 @@
 import { createClient } from 'contentful';
+import 'core-js/stable'; // https://babeljs.io/docs/en/next/babel-polyfill.html
+import 'regenerator-runtime/runtime'; // https://babeljs.io/docs/en/next/babel-polyfill.html
 import type { Handler } from 'aws-lambda';
 
-const { CONTENTFUL_SPACE, CONTENTFUL_ACCESS_TOKEN, REACT_APP_DOMAIN } = process.env;
+const { CONTENTFUL_SPACE, CONTENTFUL_ACCESS_TOKEN } = process.env;
 
 const contentful = createClient({
   space: CONTENTFUL_SPACE,
