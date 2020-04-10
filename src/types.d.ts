@@ -25,6 +25,8 @@ declare interface SponsorData {
   logo: Asset
   name: string
   website: string
+  backgroundColor?: string
+  logoPadding?: string
 }
 
 /**

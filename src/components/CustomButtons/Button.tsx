@@ -6,21 +6,39 @@ import classNames from "classnames";
 
 // @material-ui/core components
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import Button from "@material-ui/core/Button";
+import Button, { ButtonTypeMap } from "@material-ui/core/Button";
+import type { ButtonProps } from '@material-ui/core';
 
 // core components
 
 import buttonStyle from "assets/jss/material-kit-react/components/buttonStyle.js";
+import type { ArrayElement } from "../../types";
 
 const makeComponentStyles = makeStyles((() => ({
   ...buttonStyle
 })) as Parameters<typeof makeStyles>[0]);
 
-const RegularButton = React.forwardRef((props: any, ref) => {
+const COLOR_OPTIONS = ["primary", "info", "success", "warning", "danger", "rose", "white", "facebook", "twitter", "google", "github", "transparent"] as const;
+
+const SIZE_OPTIONS = ["sm", "lg"] as const;
+
+type Props =  Omit<ButtonProps<ButtonTypeMap['defaultComponent'], {
+  size?: ArrayElement<typeof SIZE_OPTIONS>
+  round?: boolean
+  fullWidth?: boolean
+  disabled?: boolean
+  block?: boolean
+  link?: boolean
+  justIcon?: boolean
+  simple?: boolean
+}>, 'color'> & {
+  color: NonNullable<ButtonProps['color'] | ArrayElement<typeof COLOR_OPTIONS>>
+};
+
+const RegularButton = React.forwardRef((props: Props, ref) => {
   const {
     color,
     round,
-    children,
     fullWidth,
     disabled,
     simple,
@@ -36,7 +54,7 @@ const RegularButton = React.forwardRef((props: any, ref) => {
 
   const btnClasses = classNames({
     [classes.button]: true,
-    [classes[size]]: size,
+    [classes[size ?? '']]: size,
     [classes[color]]: color,
     [classes.round]: round,
     [classes.fullWidth]: fullWidth,
@@ -45,40 +63,10 @@ const RegularButton = React.forwardRef((props: any, ref) => {
     [classes.block]: block,
     [classes.link]: link,
     [classes.justIcon]: justIcon,
-    [className]: className
+    [className ?? '']: className
   });
-  return (
-    <Button {...rest} ref={ref} className={btnClasses}>
-      {children}
-    </Button>
-  );
-});
 
-RegularButton.propTypes = {
-  color: PropTypes.oneOf([
-    "primary",
-    "info",
-    "success",
-    "warning",
-    "danger",
-    "rose",
-    "white",
-    "facebook",
-    "twitter",
-    "google",
-    "github",
-    "transparent"
-  ]),
-  size: PropTypes.oneOf(["sm", "lg"]),
-  simple: PropTypes.bool,
-  round: PropTypes.bool,
-  fullWidth: PropTypes.bool,
-  disabled: PropTypes.bool,
-  block: PropTypes.bool,
-  link: PropTypes.bool,
-  justIcon: PropTypes.bool,
-  children: PropTypes.node,
-  className: PropTypes.string
-};
+  return <Button {...rest} ref={ref as any} className={btnClasses} />;
+});
 
 export default RegularButton;

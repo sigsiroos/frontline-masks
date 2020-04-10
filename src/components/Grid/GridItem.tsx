@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ComponentProps } from "react";
 // nodejs library to set properties for components
 import PropTypes from "prop-types";
 // @material-ui/core components
@@ -20,14 +20,10 @@ const styles = {
 
 const useStyles = makeStyles(styles as Parameters<typeof makeStyles>[0]);
 
-const GridItem: React.FC<GridProps> = function GridItem(props) {
+const GridItem: React.FC<ComponentProps<typeof Grid> & { [key: string]: any, component?: React.ElementType }> = function GridItem(props) {
   const classes = useStyles();
-  const { children, className, ...rest } = props;
-  return (
-    <Grid item {...rest} className={classes.grid + " " + className}>
-      {children}
-    </Grid>
-  );
+  const { className, ...rest } = props;
+  return <Grid item {...rest} className={classes.grid + " " + className} />;
 }
 
 export default GridItem;
