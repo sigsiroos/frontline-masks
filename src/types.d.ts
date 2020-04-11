@@ -50,4 +50,5 @@ declare interface LandingActionData {
   title: string
   icon: Asset
   description: string
+  link?: string
 };
