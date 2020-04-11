@@ -19,12 +19,16 @@ import CustomDropdown from "components/CustomDropdown/CustomDropdown.js";
 import ButtonUntyped from "components/CustomButtons/Button";
 
 import styles from "assets/jss/material-kit-react/components/headerLinksStyle.js";
+import { useContentfulContext } from "lib/contentful";
 
 const Button: React.FC<any> = ButtonUntyped;
 const useStyles = makeStyles(styles as Parameters<typeof makeStyles>[0]);
 
 const HeaderLinks: React.FC = props => {
   const classes = useStyles();
+
+  const { globals } = useContentfulContext();
+
   return (
     <List className={classes.list}>
       {/* <ListItem className={classes.listItem}>
@@ -128,7 +132,7 @@ const HeaderLinks: React.FC = props => {
         >
           <Button
             color="transparent"
-            href="https://www.instagram.com/CreativeTimOfficial?ref=creativetim"
+            href={globals?.fields.instagram}
             target="_blank"
             className={classes.navLink}
           >
