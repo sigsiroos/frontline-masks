@@ -34,9 +34,13 @@ export default function ProductSection() {
         <GridContainer>
           <GridItem xs={12} sm={12} md={4}>
             <InfoArea
-              title="Free Chat"
+              title="Donate"
               description="Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough."
-              icon={Chat}
+              iconContent={iconClasses => <img
+                src="https://images.ctfassets.net/ab792hsrcg3y/2CZ0vmSUpJodK1jxOvOpCR/b858b097b0fb99a78918726ebbc81c7d/29964-200.png"
+                alt="Donate"
+                className={iconClasses}
+              />}
               iconColor="info"
               vertical
             />
