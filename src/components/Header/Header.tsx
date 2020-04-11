@@ -18,6 +18,9 @@ import Menu from "@material-ui/icons/Menu";
 import styles from "assets/jss/material-kit-react/components/headerStyle.js";
 import { useContentfulContext } from "lib/contentful";
 
+/** @jsx jsx */
+import { jsx, css } from '@emotion/core';
+
 const useStyles = makeStyles(styles as Parameters<typeof makeStyles>[0]);
 
 const Header: React.FC<{
@@ -90,9 +93,18 @@ const Header: React.FC<{
       className={classes.title}
       component={Link}
       to="/"
+      css={css`
+        padding: 0 !important;
+        height: 50px;
+        display: flex;
+        * { height: 100%; }
+      `}
       >
-      {brand}
-      {/* <img src={globals?.fields.companyLogoOrange.fields.file.url} alt='FrontlineMasks' /> */}
+      <img
+        src={globals?.fields.companyLogoWhite.fields.file.url}
+        alt="FrontlineMasks"
+      />
+      {/* {brand} */}
     </Button>
   );
 
