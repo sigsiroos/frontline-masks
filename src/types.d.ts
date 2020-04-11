@@ -41,6 +41,13 @@ declare interface LandingData {
   tagline: string
   background: Asset
   sponsors: Entry<SponsorData>[]
+  actions: Entry<LandingActionData>[]
 };
 
 declare type LandingDataEntry = Entry<LandingData>;
+
+declare interface LandingActionData {
+  title: string
+  icon: Asset
+  description: string
+};

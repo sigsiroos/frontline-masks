@@ -9,14 +9,21 @@ import Fingerprint from "@material-ui/icons/Fingerprint";
 // core components
 import GridContainer from "components/Grid/GridContainer";
 import GridItem from "components/Grid/GridItem";
-import InfoArea from "components/InfoArea/InfoArea.js";
+import InfoArea from "components/InfoArea/InfoArea";
 
 import styles from "assets/jss/material-kit-react/views/landingPageSections/productStyle";
+import { useContentfulContext } from "lib/contentful";
+
+/** @jsx jsx */
+import { jsx, css } from '@emotion/core';
 
 const useStyles = makeStyles(styles);
 
 export default function ProductSection() {
   const classes = useStyles();
+
+  const { landing } = useContentfulContext();
+
   return (
     <div className={classes.section}>
       {/* <GridContainer justify="center">
@@ -31,38 +38,22 @@ export default function ProductSection() {
         </GridItem>
       </GridContainer> */}
       <div>
-        <GridContainer>
-          <GridItem xs={12} sm={12} md={4}>
-            <InfoArea
-              title="Donate"
-              description="Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough."
-              iconContent={iconClasses => <img
-                src="https://images.ctfassets.net/ab792hsrcg3y/2CZ0vmSUpJodK1jxOvOpCR/b858b097b0fb99a78918726ebbc81c7d/29964-200.png"
-                alt="Donate"
-                className={iconClasses}
-              />}
-              iconColor="info"
-              vertical
-            />
-          </GridItem>
-          <GridItem xs={12} sm={12} md={4}>
-            <InfoArea
-              title="Verified Users"
-              description="Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough."
-              icon={VerifiedUser}
-              iconColor="success"
-              vertical
-            />
-          </GridItem>
-          <GridItem xs={12} sm={12} md={4}>
-            <InfoArea
-              title="Fingerprint"
-              description="Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough."
-              icon={Fingerprint}
-              iconColor="danger"
-              vertical
-            />
-          </GridItem>
+        <GridContainer css={css`justify-content: center;`}>
+          {landing?.fields.actions.map(action => (
+            <GridItem xs={12} sm={12} md={4} key={action.sys.id}>
+              <InfoArea
+                title={action.fields.title}
+                description={action.fields.description}
+                iconContent={iconClasses => <img
+                  src={action.fields.icon.fields.file.url}
+                  alt={action.fields.title}
+                  className={iconClasses}
+                />}
+                iconColor="info"
+                vertical
+              />
+            </GridItem>
+          ))}
         </GridContainer>
       </div>
     </div>

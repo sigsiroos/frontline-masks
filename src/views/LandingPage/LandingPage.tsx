@@ -16,9 +16,8 @@ import styles from "assets/jss/material-kit-react/views/landingPage.js";
 import { LandingPageParallax } from './Parallax';
 
 // Sections for this page
-import ProductSection from "./Sections/ProductSection.js";
+import ActionsSection from "./Sections/ActionsSection"
 import SponsorsSection from "./Sections/SponsorsSection";
-import WorkSection from "./Sections/WorkSection.js";
 import { sectionsFadeIn } from "./Parallax/startupAnimation";
 
 import { useContentfulContext } from '../../lib/contentful';
@@ -53,7 +52,7 @@ export default function LandingPage(props: any) {
       <LandingPageParallax />
       <div className={classNames(classes.main, classes.mainRaised)} css={sectionsFadeIn}>
         <div className={classes.container}>
-          <ProductSection />
+          <ActionsSection />
           {landing?.fields.sponsors?.length ? <SponsorsSection /> : undefined}
           {/* <WorkSection /> */}
         </div>

@@ -8,9 +8,16 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import styles from "assets/jss/material-kit-react/components/infoStyle.js";
 
-const useStyles = makeStyles(styles);
+const useStyles = makeStyles(styles as Parameters<typeof makeStyles>[0]);
 
-export default function InfoArea(props) {
+const InfoArea: React.FC<{
+  icon?: React.FC<any>,
+  title: string,
+  description: string,
+  iconColor: "primary" | "warning" | "danger" | "success" | "info" | "rose" | "gray",
+  vertical: boolean,
+  iconContent?: (iconClasses: string) => JSX.Element,
+}> = function InfoArea(props) {
   const classes = useStyles();
   const { title, description, iconColor, vertical, iconContent } = props;
   const iconWrapper = classNames({
@@ -26,9 +33,9 @@ export default function InfoArea(props) {
     <div className={classes.infoArea}>
       <div className={iconWrapper}>
         {
-          iconContent
-            ? iconContent(iconClasses)
-            : <props.icon className={iconClasses} />
+          iconContent ? iconContent(iconClasses) :
+          props.icon ? <props.icon className={iconClasses} /> :
+          ''
         }
       </div>
       <div className={classes.descriptionWrapper}>
@@ -39,22 +46,24 @@ export default function InfoArea(props) {
   );
 }
 
+export default InfoArea;
+
 InfoArea.defaultProps = {
   iconColor: "gray"
 };
 
-InfoArea.propTypes = {
-  icon: PropTypes.object,
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  iconColor: PropTypes.oneOf([
-    "primary",
-    "warning",
-    "danger",
-    "success",
-    "info",
-    "rose",
-    "gray"
-  ]),
-  vertical: PropTypes.bool
-};
+// InfoArea.propTypes = {
+//   icon: PropTypes.object,
+//   title: PropTypes.string.isRequired,
+//   description: PropTypes.string.isRequired,
+//   iconColor: PropTypes.oneOf([
+//     "primary",
+//     "warning",
+//     "danger",
+//     "success",
+//     "info",
+//     "rose",
+//     "gray"
+//   ]),
+//   vertical: PropTypes.bool
+// };

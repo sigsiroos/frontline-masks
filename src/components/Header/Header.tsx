@@ -95,7 +95,7 @@ const Header: React.FC<{
       to="/"
       css={css`
         padding: 0 !important;
-        height: 50px;
+        height: 60px;
         display: flex;
         * { height: 100%; }
       `}
@@ -109,7 +109,7 @@ const Header: React.FC<{
   );
 
   return (
-    <AppBar className={appBarClasses}>
+    <AppBar className={appBarClasses} css={css`padding: .25rem 0 !important;`}>
       <Toolbar className={classes.container}>
         {leftLinks !== undefined ? brandComponent : null}
         <div className={classes.flex}>
