@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -14,9 +14,21 @@ import styles from "assets/jss/material-kit-react/views/landingPageSections/work
 
 const useStyles = makeStyles(styles as Parameters<typeof makeStyles>[0]);
 
+/** @see {@tutorial https://www.netlify.com/blog/2017/07/20/how-to-integrate-netlifys-form-handling-in-a-react-app/#form-handling-with-a-stateful-react-form} */
+const encode = (data: any) => {
+  return Object.keys(data)
+      .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+      .join("&");
+}
+
 /** @see {@tutorial https://docs.netlify.com/forms/setup/} */
 export default function FormSection() {
   const classes = useStyles();
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [message, setMessage] = useState('');
 
   return (
     <div className={classes.section}>

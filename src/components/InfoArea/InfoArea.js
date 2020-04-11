@@ -44,7 +44,7 @@ InfoArea.defaultProps = {
 };
 
 InfoArea.propTypes = {
-  icon: PropTypes.object.isRequired,
+  icon: PropTypes.object,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   iconColor: PropTypes.oneOf([

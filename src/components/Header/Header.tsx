@@ -101,7 +101,7 @@ const Header: React.FC<{
       `}
       >
       <img
-        src={globals?.fields.companyLogoWhite.fields.file.url}
+        src={globals?.fields.navbarLogo?.fields.file.url}
         alt="FrontlineMasks"
       />
       {/* {brand} */}

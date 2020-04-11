@@ -31,8 +31,6 @@ export default function LandingPage(props: any) {
   const classes = useStyles();
   const { ...rest } = props;
 
-  const { landing } = useContentfulContext();
-
   return (
     <div css={css`max-width: 100%; overflow-x: hidden;`}>
       <Header

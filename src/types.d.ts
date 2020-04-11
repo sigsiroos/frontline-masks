@@ -14,6 +14,7 @@ declare type GlobalData = {
   companyName: string,
   companyLogoWhite: Asset,
   companyLogoOrange: Asset,
+  navbarLogo: Asset,
   instagram: string,
   goFundMe: string,
   pages: any[],
