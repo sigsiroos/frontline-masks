@@ -9,4 +9,4 @@
   command = "npm run build"
 
   # https://github.com/netlify/netlify-lambda
-  functions = "lambdas/dist" #  netlify-lambda reads this
+  functions = "lambdas/dist/" #  netlify-lambda reads this
