@@ -47,8 +47,10 @@ declare interface LandingData {
 declare type LandingDataEntry = Entry<LandingData>;
 
 declare interface LandingActionData {
-  title: string
-  icon: Asset
-  description: string
+  title?: string
+  iconImage?: Asset
+  fontAwesomeIcon?: string
+  iconColor?: string
+  description?: string
   link?: string
 };

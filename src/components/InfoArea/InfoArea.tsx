@@ -16,7 +16,7 @@ const InfoArea: React.FC<{
   description: string,
   iconColor: "primary" | "warning" | "danger" | "success" | "info" | "rose" | "gray",
   vertical: boolean,
-  iconContent?: (iconClasses: string) => JSX.Element,
+  iconContent?: (iconClasses: string) => JSX.Element | string,
 }> = function InfoArea(props) {
   const classes = useStyles();
   const { title, description, iconColor, vertical, iconContent } = props;

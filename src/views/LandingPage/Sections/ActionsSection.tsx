@@ -42,13 +42,28 @@ export default function ProductSection() {
           {landing?.fields.actions.map(action => (
             <GridItem xs={12} sm={12} md={4} key={action.sys.id}>
               <InfoArea
-                title={action.fields.title}
-                description={action.fields.description}
-                iconContent={iconClasses => <img
-                  src={action.fields.icon.fields.file.url}
-                  alt={action.fields.title}
-                  className={iconClasses}
-                />}
+                title={action.fields.title ?? ''}
+                description={action.fields.description ?? ''}
+                iconContent={iconClasses =>
+                  action.fields.iconImage
+                    ? <img
+                        src={action.fields.iconImage?.fields.file.url}
+                        alt={action.fields.title}
+                        className={iconClasses}
+                      /> :
+                  action.fields.fontAwesomeIcon
+                    ? <i
+                        className={`${iconClasses} ${action.fields.fontAwesomeIcon}`}
+                        css={css`
+                          color: ${action.fields.iconColor};
+                          display: inline-flex;
+                          align-items: center;
+                          justify-content: center;
+                          &:before { font-size: 3.8rem; }
+                        `}
+                      /> :
+                  ''
+                }
                 iconColor="info"
                 vertical
               />
