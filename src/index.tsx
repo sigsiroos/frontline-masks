@@ -55,7 +55,8 @@ const Root: React.FC = function Root() {
         {/* <Route path="/profile-page" component={ProfilePage} /> */}
         {/* <Route path="/login-page" component={LoginPage} /> */}
         {/* <Route path="/" component={Components} /> */}
-        <Route path="/donate" component={DonatePage} />
+
+        {/* <Route path="/donate" component={DonatePage} /> */}
         <Route path="/mission" component={MissionPage} />
         <Route path="/" component={LandingPage} />
       </AnimatedSwitch>
