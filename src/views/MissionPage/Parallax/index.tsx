@@ -22,9 +22,9 @@ export const LandingPageParallax: React.FC = function LandingPageParallax() {
         <GridContainer>
           <GridItem xs={12} sm={12} md={6}>
             <h1 className={classes.title}>Mission</h1>
-            {/* <h4>
-              This is the Mission
-            </h4> */}
+            <h4>
+              We are working to maximize the amount of masks and protective gear that our healthcare workers are receiving and to get a hold on the price-gouging happening within in the marketplace to secure more favorable pricing through our network
+            </h4>
             {/* <br />
             <Button
               color="danger"
