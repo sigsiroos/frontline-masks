@@ -8,7 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 // core components
 import Header from "components/Header/Header";
-import Footer from "components/Footer/Footer.js";
+import Footer from "components/Footer/Footer";
 import HeaderLinks from "components/Header/HeaderLinks";
 
 import ProductSection from "./Sections/ProductSection";
@@ -47,6 +47,7 @@ export default function MissionPage(props: any) {
         </div>
       </div>
       <br/>
+      <Footer />
     </div>
   );
 }

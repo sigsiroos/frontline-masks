@@ -5,17 +5,23 @@ import PropTypes from "prop-types";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // material-ui core components
-import { List, ListItem } from "@material-ui/core";
+import { List, ListItem, Link } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+
+import Button from "components/CustomButtons/Button";
+import { Link as RouterLink } from 'react-router-dom';
 
 // @material-ui/icons
 import Favorite from "@material-ui/icons/Favorite";
 
 import styles from "assets/jss/material-kit-react/components/footerStyle.js";
+import { useContentfulContext } from "lib/contentful";
 
-const useStyles = makeStyles(styles);
+const useStyles = makeStyles(styles as Parameters<typeof makeStyles>[0]);
 
-export default function Footer(props) {
+const Footer: React.FC<{
+  whiteFont?: boolean
+}> = function Footer(props) {
   const classes = useStyles();
   const { whiteFont } = props;
   const footerClasses = classNames({
@@ -26,39 +32,38 @@ export default function Footer(props) {
     [classes.a]: true,
     [classes.footerWhiteFont]: whiteFont
   });
+
+  const { globals } = useContentfulContext();
+
   return (
     <footer className={footerClasses}>
       <div className={classes.container}>
         <div className={classes.left}>
           <List className={classes.list}>
             <ListItem className={classes.inlineBlock}>
-              <a
+              <Link component={RouterLink} to="/mission">
+                About Us
+              </Link>
+              {/* <a
                 href="https://www.creative-tim.com/?ref=mkr-footer"
                 className={classes.block}
                 target="_blank"
               >
                 Creative Tim
-              </a>
+              </a> */}
             </ListItem>
             <ListItem className={classes.inlineBlock}>
-              <a
-                href="https://www.creative-tim.com/presentation?ref=mkr-footer"
-                className={classes.block}
+              <Button
+                color="transparent"
+                href={globals?.fields.instagram}
                 target="_blank"
+                size='sm'
+                className={classes.navLink}
               >
-                About us
-              </a>
+                <i className={classes.socialIcons + " fab fa-instagram"} />
+              </Button>
             </ListItem>
-            <ListItem className={classes.inlineBlock}>
-              <a
-                href="http://blog.creative-tim.com/?ref=mkr-footer"
-                className={classes.block}
-                target="_blank"
-              >
-                Blog
-              </a>
-            </ListItem>
-            <ListItem className={classes.inlineBlock}>
+            {/* <ListItem className={classes.inlineBlock}>
               <a
                 href="https://www.creative-tim.com/license?ref=mkr-footer"
                 className={classes.block}
@@ -66,11 +71,12 @@ export default function Footer(props) {
               >
                 Licenses
               </a>
-            </ListItem>
+            </ListItem> */}
           </List>
         </div>
         <div className={classes.right}>
-          &copy; {1900 + new Date().getYear()} , made with{" "}
+          &copy; {new Date().getFullYear()} FrontlineMasks
+          {/* &copy; {new Date().getFullYear()} , made with{" "}
           <Favorite className={classes.icon} /> by{" "}
           <a
             href="https://www.creative-tim.com?ref=mkr-footer"
@@ -79,12 +85,14 @@ export default function Footer(props) {
           >
             Creative Tim
           </a>{" "}
-          for a better web.
+          for a better web. */}
         </div>
       </div>
     </footer>
   );
 }
+
+export default Footer;
 
 Footer.propTypes = {
   whiteFont: PropTypes.bool

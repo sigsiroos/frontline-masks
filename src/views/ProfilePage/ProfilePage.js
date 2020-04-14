@@ -9,7 +9,7 @@ import Palette from "@material-ui/icons/Palette";
 import Favorite from "@material-ui/icons/Favorite";
 // core components
 import Header from "components/Header/Header";
-import Footer from "components/Footer/Footer.js";
+import Footer from "components/Footer/Footer";
 import Button from "components/CustomButtons/Button";
 import GridContainer from "components/Grid/GridContainer";
 import GridItem from "components/Grid/GridItem";

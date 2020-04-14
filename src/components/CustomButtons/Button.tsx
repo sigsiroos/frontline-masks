@@ -1,4 +1,4 @@
-import React from "react";
+import React, { AnchorHTMLAttributes } from "react";
 // nodejs library to set properties for components
 import PropTypes from "prop-types";
 // nodejs library that concatenates classes
@@ -23,7 +23,6 @@ const COLOR_OPTIONS = ["primary", "info", "success", "warning", "danger", "rose"
 const SIZE_OPTIONS = ["sm", "lg"] as const;
 
 type Props =  Omit<ButtonProps<ButtonTypeMap['defaultComponent'], {
-  size?: ArrayElement<typeof SIZE_OPTIONS>
   round?: boolean
   fullWidth?: boolean
   disabled?: boolean
@@ -31,9 +30,10 @@ type Props =  Omit<ButtonProps<ButtonTypeMap['defaultComponent'], {
   link?: boolean
   justIcon?: boolean
   simple?: boolean
-}>, 'color'> & {
+}>, 'color' | 'size'> & {
+  size?: ArrayElement<typeof SIZE_OPTIONS>
   color: NonNullable<ButtonProps['color'] | ArrayElement<typeof COLOR_OPTIONS>>
-};
+} & AnchorHTMLAttributes<any>;
 
 const RegularButton = React.forwardRef((props: Props, ref) => {
   const {
