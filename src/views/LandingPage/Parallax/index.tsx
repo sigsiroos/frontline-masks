@@ -8,7 +8,8 @@ import { useContentfulContext } from '../../../lib/contentful';
 import { parallaxFadeIn, parallaxTextSlideIn } from './startupAnimation';
 
 /** @jsx jsx */
-import { jsx } from '@emotion/core'
+import { jsx } from '@emotion/core';
+import { MOBILE_VIEWPORT } from 'utils';
 
 const useStyles = makeStyles(styles as Parameters<typeof makeStyles>[0]);
 
@@ -18,7 +19,7 @@ export const LandingPageParallax: React.FC = function LandingPageParallax() {
   const classes = useStyles();
 
   return (
-    <Parallax filter={window.innerWidth < 960} image={landing?.fields.background.fields.file.url} css={parallaxFadeIn}>
+    <Parallax filter={MOBILE_VIEWPORT} image={landing?.fields.background.fields.file.url} css={parallaxFadeIn}>
       <div className={classes.container}>
         <GridContainer>
           <GridItem xs={12} sm={12} md={6} css={parallaxTextSlideIn}>
