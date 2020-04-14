@@ -11,8 +11,8 @@ import Components from "views/Components/Components.js";
 import LandingPage from "views/LandingPage/LandingPage";
 import DonatePage from "views/DonatePage/DonatePage";
 import MissionPage from "views/MissionPage/MissionPage";
-import ProfilePage from "views/ProfilePage/ProfilePage.js";
-import LoginPage from "views/LoginPage/LoginPage.js";
+// import ProfilePage from "views/ProfilePage/ProfilePage.js";
+// import LoginPage from "views/LoginPage/LoginPage.js";
 import { ContentfulProvider, useContentfulContext } from "./lib/contentful";
 import { HeartLoader } from "components/HeartLoader";
 import { ScrollToTop } from "components/ScrollToTop";
@@ -58,7 +58,7 @@ const Root: React.FC = function Root() {
         {/* <Route path="/login-page" component={LoginPage} /> */}
         {/* <Route path="/" component={Components} /> */}
 
-        {/* <Route path="/donate" component={DonatePage} /> */}
+        <Route path="/donate" component={DonatePage} />
         <Route path="/mission" component={MissionPage} />
         <Route path="/" component={LandingPage} />
       </AnimatedSwitch>

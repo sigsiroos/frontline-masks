@@ -64,7 +64,7 @@ const HeaderLinks: React.FC = props => {
           <CloudDownload className={classes.icons} /> Download
         </Button>
       </ListItem> */}
-      {/* <ListItem className={classes.listItem}>
+      <ListItem className={classes.listItem}>
         <Button
           component={Link}
           to="/donate"
@@ -73,7 +73,7 @@ const HeaderLinks: React.FC = props => {
         >
           Donate
         </Button>
-      </ListItem> */}
+      </ListItem>
       <ListItem className={classes.listItem}>
         <Button
           component={Link}
