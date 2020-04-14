@@ -41,8 +41,8 @@ const Footer: React.FC<{
         <div className={classes.left}>
           <List className={classes.list}>
             <ListItem className={classes.inlineBlock}>
-              <Link component={RouterLink} to="/mission">
-                About Us
+              <Link component={RouterLink} to="/mission" className={classes.block}>
+                About
               </Link>
               {/* <a
                 href="https://www.creative-tim.com/?ref=mkr-footer"
@@ -51,6 +51,14 @@ const Footer: React.FC<{
               >
                 Creative Tim
               </a> */}
+            </ListItem>
+            <ListItem className={classes.inlineBlock}>
+              <a
+                href="mailto:frontlinemasks.org@gmail.com"
+                className={classes.block}
+              >
+                Contact
+              </a>
             </ListItem>
             <ListItem className={classes.inlineBlock}>
               <Button
@@ -63,15 +71,6 @@ const Footer: React.FC<{
                 <i className={classes.socialIcons + " fab fa-instagram"} />
               </Button>
             </ListItem>
-            {/* <ListItem className={classes.inlineBlock}>
-              <a
-                href="https://www.creative-tim.com/license?ref=mkr-footer"
-                className={classes.block}
-                target="_blank"
-              >
-                Licenses
-              </a>
-            </ListItem> */}
           </List>
         </div>
         <div className={classes.right}>

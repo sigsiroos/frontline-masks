@@ -15,6 +15,7 @@ import ProfilePage from "views/ProfilePage/ProfilePage.js";
 import LoginPage from "views/LoginPage/LoginPage.js";
 import { ContentfulProvider, useContentfulContext } from "./lib/contentful";
 import { HeartLoader } from "components/HeartLoader";
+import { ScrollToTop } from "components/ScrollToTop";
 
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
@@ -39,6 +40,7 @@ const Root: React.FC = function Root() {
 
   return (
     <Router history={hist}>
+      <ScrollToTop />
       <AnimatedSwitch
         atEnter={{ opacity: 0 }}
         atLeave={{ opacity: 0 }}
