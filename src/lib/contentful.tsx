@@ -15,7 +15,6 @@ function useDefaultContext() {
   const [globals, setGlobals] = useState(undefined as GlobalDataEntry | undefined);
   const [landing, setLanding] = useState(undefined as LandingDataEntry | undefined);
 
-
   useEffect(() => {
     (async () => {
       const getGlobalData = async () => (await (contentfulLambdas.get<GlobalDataEntry>('globals'))).data;
