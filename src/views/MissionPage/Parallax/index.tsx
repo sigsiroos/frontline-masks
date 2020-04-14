@@ -13,7 +13,7 @@ import { jsx } from '@emotion/core'
 const useStyles = makeStyles(styles as Parameters<typeof makeStyles>[0]);
 
 export const LandingPageParallax: React.FC = function LandingPageParallax() {
-  const { landing } = useContentfulContext();
+  const { landing, mission } = useContentfulContext();
 
   const classes = useStyles();
 
@@ -22,9 +22,9 @@ export const LandingPageParallax: React.FC = function LandingPageParallax() {
       <div className={classes.container}>
         <GridContainer>
           <GridItem xs={12} sm={12} md={6}>
-            <h1 className={classes.title}>Mission</h1>
+            <h1 className={classes.title}>{mission?.fields.title}</h1>
             <h4>
-              We are working to maximize the amount of masks and protective gear that our healthcare workers are receiving and to get a hold on the price-gouging happening within in the marketplace to secure more favorable pricing through our network
+              {mission?.fields.tagline}
             </h4>
             {/* <br />
             <Button

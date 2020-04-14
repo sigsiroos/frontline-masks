@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { wait, ORIGIN } from '../utils';
-import type { Entries, GlobalsEntry, ColorsEntry, LandingEntry, ColorEntry, ColorsData, ColorData } from '../types';
+import type { Entries, GlobalsEntry, ColorsEntry, LandingEntry, ColorEntry, ColorsData, ColorData, MissionEntry } from '../types';
 import type { Sys } from 'contentful';
 
 const contentfulLambdas = axios.create({
@@ -12,6 +12,7 @@ function useDefaultContext() {
   const [globals, setGlobals] = useState(undefined as GlobalsEntry | undefined);
   const [colors, setColors] = useState(undefined as ColorsEntry | undefined)
   const [landing, setLanding] = useState(undefined as LandingEntry | undefined);
+  const [mission, setMission] = useState(undefined as MissionEntry | undefined);
 
   useEffect(() => {
     (async () => {
@@ -27,6 +28,11 @@ function useDefaultContext() {
     (async () => {
       const getLandingData = async () => (await (contentfulLambdas.get<LandingEntry>('landing'))).data;
       setLanding(await wait(getLandingData(), 420));
+    })();
+
+    (async () => {
+      const getMissionData = async () => (await (contentfulLambdas.get<MissionEntry>('mission'))).data;
+      setMission(await wait(getMissionData(), 420));
     })();
   }, []);
 
@@ -44,7 +50,7 @@ function useDefaultContext() {
     return accumulator
   }, {} as { [key in keyof ColorsData]?: ColorData['code'] | undefined });
 
-  return { globals, colors, landing, getColorEntry, colorCodes };
+  return { globals, colors, landing, getColorEntry, colorCodes, mission };
 };
 
 export const ContentfulContext = React.createContext({} as ReturnType<typeof useDefaultContext>);

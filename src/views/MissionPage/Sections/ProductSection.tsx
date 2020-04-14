@@ -22,6 +22,9 @@ export default function ProductSection() {
         <GridItem xs={12} sm={12} md={8}>
           <h2 className={classes.title}>Want to help our cause?</h2>
           <h5 className={classes.description}>
+            We are working to maximize the amount of masks and protective gear that our healthcare workers are receiving and to get a hold on the price-gouging happening within in the marketplace to secure more favorable pricing through our network
+          </h5>
+          <h5 className={classes.description}>
             {/* This is the paragraph where you can write more details about your
             product. Keep you user engaged by providing meaningful information.
             Remember that by this time, the user is curious, otherwise he wouldn
