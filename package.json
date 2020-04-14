@@ -1,7 +1,7 @@
 {
-  "name": "material-kit-react",
-  "version": "1.8.0",
-  "description": "Material Kit React. Coded by Creative Tim",
+  "name": "frontline-masks",
+  "version": "1.0.0",
+  "description": "FrontlineMasks",
   "private": true,
   "main": "dist/index.js",
   "dependencies": {
@@ -50,7 +50,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && npm run build-lambdas",
+    "build": "CI=false react-scripts build && npm run build-lambdas",
     "build-lambdas": "netlify-lambda build ./lambdas/functions",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
