@@ -1,4 +1,4 @@
-import React, { useEffect, useState     , useContext } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { wait } from '../utils';
 import type { GlobalDataEntry, LandingDataEntry } from '../types';
@@ -6,7 +6,7 @@ import type { GlobalDataEntry, LandingDataEntry } from '../types';
 const contentfulLambdas = axios.create({
   baseURL: `${
     (window.location.hostname === 'localhost')
-      ? process.env.REACT_APP_DOMAIN
+      ? 'https://develop.frontlinemasks.org'
       : window.location.origin
   }/.netlify/functions`,
 });

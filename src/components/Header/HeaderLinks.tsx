@@ -66,8 +66,11 @@ const HeaderLinks: React.FC = props => {
       </ListItem> */}
       <ListItem className={classes.listItem}>
         <Button
-          component={Link}
-          to="/donate"
+          // component={Link}
+          component='a'
+          // to="/donate"
+          href="https://www.gofundme.com/f/tztm7-ppe-for-the-frontlines"
+          target="_blank"
           color="transparent"
           className={classes.navLink}
         >
