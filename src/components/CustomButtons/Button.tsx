@@ -1,8 +1,8 @@
 import React, { AnchorHTMLAttributes } from "react";
-// nodejs library to set properties for components
-import PropTypes from "prop-types";
 // nodejs library that concatenates classes
 import classNames from "classnames";
+
+import type { LinkProps } from 'react-router-dom';
 
 // @material-ui/core components
 import makeStyles from "@material-ui/core/styles/makeStyles";
@@ -13,6 +13,9 @@ import type { ButtonProps } from '@material-ui/core';
 
 import buttonStyle from "assets/jss/material-kit-react/components/buttonStyle.js";
 import type { ArrayElement } from "../../types";
+
+/** @jsx jsx */
+import { jsx, css } from '@emotion/core';
 
 const makeComponentStyles = makeStyles((() => ({
   ...buttonStyle
@@ -30,10 +33,14 @@ type Props =  Omit<ButtonProps<ButtonTypeMap['defaultComponent'], {
   link?: boolean
   justIcon?: boolean
   simple?: boolean
-}>, 'color' | 'size'> & {
-  size?: ArrayElement<typeof SIZE_OPTIONS>
-  color: NonNullable<ButtonProps['color'] | ArrayElement<typeof COLOR_OPTIONS>>
-} & AnchorHTMLAttributes<any>;
+}>, 'color' | 'size'>
+  & {
+    size?: ArrayElement<typeof SIZE_OPTIONS>
+    color: NonNullable<ButtonProps['color'] | ArrayElement<typeof COLOR_OPTIONS>>
+    textColor?: string
+  }
+  & AnchorHTMLAttributes<any>
+  & Partial<LinkProps>;
 
 const RegularButton = React.forwardRef((props: Props, ref) => {
   const {
@@ -47,6 +54,7 @@ const RegularButton = React.forwardRef((props: Props, ref) => {
     link,
     justIcon,
     className,
+    textColor,
     ...rest
   } = props;
 
@@ -63,10 +71,15 @@ const RegularButton = React.forwardRef((props: Props, ref) => {
     [classes.block]: block,
     [classes.link]: link,
     [classes.justIcon]: justIcon,
-    [className ?? '']: className
+    [className ?? '']: className,
   });
 
-  return <Button {...rest} ref={ref as any} className={btnClasses} />;
+  return <Button
+    {...rest}
+    css={css`${textColor ? `.MuiButton-label { color: ${textColor}; }` : ''}`}
+    className={btnClasses}
+    ref={ref as any}
+  />;
 });
 
 export default RegularButton;

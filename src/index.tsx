@@ -10,6 +10,7 @@ import "assets/scss/material-kit-react.scss?v=1.8.0";
 import Components from "views/Components/Components.js";
 import LandingPage from "views/LandingPage/LandingPage";
 import DonatePage from "views/DonatePage/DonatePage";
+import RequestPage from "views/RequestPage/RequestPage";
 import MissionPage from "views/MissionPage/MissionPage";
 // import ProfilePage from "views/ProfilePage/ProfilePage.js";
 // import LoginPage from "views/LoginPage/LoginPage.js";
@@ -18,7 +19,7 @@ import { HeartLoader } from "components/HeartLoader";
 import { ScrollToTop } from "components/ScrollToTop";
 
 /** @jsx jsx */
-import { jsx, css } from '@emotion/core'
+import { jsx, css } from '@emotion/core';
 
 const hist = createBrowserHistory();
 
@@ -58,6 +59,7 @@ const Root: React.FC = function Root() {
         {/* <Route path="/login-page" component={LoginPage} /> */}
         {/* <Route path="/" component={Components} /> */}
 
+        <Route path="/request" component={RequestPage} />
         <Route path="/donate" component={DonatePage} />
         <Route path="/mission" component={MissionPage} />
         <Route path="/" component={LandingPage} />

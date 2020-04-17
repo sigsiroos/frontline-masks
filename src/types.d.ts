@@ -10,6 +10,16 @@ declare type ArrayElement<ArrayType> =
 declare type ResolveType<T> = T extends Promise<infer R> ? R : T;
 /* ******************************** utility types ******************************** */
 
+declare interface ColorData<N extends string = string, C extends string = string> {
+  name: N
+  code: C
+}
+
+declare interface ColorsData {
+  blue: Entry<ColorData<'Blue', '#6dcde3'>>
+  orange: Entry<ColorData<'Orange', '#f38530'>>
+}
+
 declare type GlobalData = {
   companyName: string,
   companyLogoWhite: Asset,
@@ -18,6 +28,7 @@ declare type GlobalData = {
   instagram: string,
   goFundMe: string,
   pages: any[],
+  colors: Entry<ColorsData>,
 };
 
 declare type GlobalDataEntry = Entry<GlobalData>;

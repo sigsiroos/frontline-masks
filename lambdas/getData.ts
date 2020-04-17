@@ -27,9 +27,12 @@ export const getData = <Data>(
   event, context, callback
 ) => {
   const url = event.headers.referer ? new URL(event.headers.referer) : { hostname: 'localhost' };
+
+  const thisRequestIsBeingMadeDuringDevelopment = url.hostname === 'localhost';
+
   const thisRequestIsBeingMadeFromASafeOrigin =
     url.hostname.match(/frontlinemasks\.netlify\.com$/) ||
-    (url.hostname === 'localhost'); // localhost isnt actually that safe lol but oh wells we need access from our dev env
+    thisRequestIsBeingMadeDuringDevelopment; // localhost isnt actually safe lol but oh wells we need access from our dev env
 
   const headers = {
     /**
@@ -52,8 +55,12 @@ export const getData = <Data>(
       statusCode: 200,
       headers,
       body: JSON.stringify({
-        event, context, callback,
-        ...responseData
+        ...(
+          thisRequestIsBeingMadeDuringDevelopment
+            ? { event, context, callback }
+            : {}
+        ),
+        ...responseData,
       }),
     });
   } catch (err) {
@@ -62,8 +69,12 @@ export const getData = <Data>(
       statusCode: 418,
       headers,
       body: JSON.stringify({
-        ...event, context, callback,
-        err
+        ...(
+          thisRequestIsBeingMadeDuringDevelopment
+            ? { event, context, callback }
+            : {}
+        ),
+        err,
       }),
     });
   }

@@ -16,12 +16,11 @@ import { Apps, CloudDownload } from "@material-ui/icons";
 
 // core components
 import CustomDropdown from "components/CustomDropdown/CustomDropdown.js";
-import ButtonUntyped from "components/CustomButtons/Button";
+import Button from "components/CustomButtons/Button";
 
 import styles from "assets/jss/material-kit-react/components/headerLinksStyle.js";
 import { useContentfulContext } from "lib/contentful";
 
-const Button: React.FC<any> = ButtonUntyped;
 const useStyles = makeStyles(styles as Parameters<typeof makeStyles>[0]);
 
 const HeaderLinks: React.FC = props => {
@@ -54,20 +53,20 @@ const HeaderLinks: React.FC = props => {
           ]}
         />
       </ListItem> */}
-      {/* <ListItem className={classes.listItem}>
+      <ListItem className={classes.listItem}>
         <Button
-          href="https://www.creative-tim.com/product/material-kit-react?ref=mkr-navbar"
+          component={Link}
+          to="/request"
           color="transparent"
-          target="_blank"
           className={classes.navLink}
+          textColor={globals?.fields.colors.fields.orange.fields?.code}
         >
-          <CloudDownload className={classes.icons} /> Download
+          I Need PPE
         </Button>
-      </ListItem> */}
+      </ListItem>
       <ListItem className={classes.listItem}>
         <Button
           // component={Link}
-          component='a'
           // to="/donate"
           href="https://www.gofundme.com/f/tztm7-ppe-for-the-frontlines"
           target="_blank"
