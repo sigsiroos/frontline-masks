@@ -22,7 +22,7 @@ const useStyles = makeStyles(styles);
 export default function ProductSection() {
   const classes = useStyles();
 
-  const { landing } = useContentfulContext();
+  const { landing, getColorEntry } = useContentfulContext();
 
   return (
     <div className={classes.section}>
@@ -55,7 +55,10 @@ export default function ProductSection() {
                     ? <i
                         className={`${iconClasses} ${action.fields.fontAwesomeIcon}`}
                         css={css`
-                          color: ${action.fields.iconColor};
+                          ${(() => {
+                            const color = getColorEntry(action.fields.iconColor?.sys.id)?.fields?.code;
+                            return color ? `color: ${color};` : '';
+                          })()}
                           display: inline-flex;
                           align-items: center;
                           justify-content: center;

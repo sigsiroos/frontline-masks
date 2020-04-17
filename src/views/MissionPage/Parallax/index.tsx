@@ -5,7 +5,7 @@ import GridItem from "components/Grid/GridItem";
 import Parallax from "components/Parallax/Parallax.js";
 import styles from "assets/jss/material-kit-react/views/landingPage.js";
 import { useContentfulContext } from '../../../lib/contentful';
-import { MOBILE_VIEWPORT } from 'utils';
+import { IS_MOBILE_VIEWPORT } from 'utils';
 
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
@@ -18,7 +18,7 @@ export const LandingPageParallax: React.FC = function LandingPageParallax() {
   const classes = useStyles();
 
   return (
-    <Parallax filter={MOBILE_VIEWPORT} image={landing?.fields.background.fields.file.url}>
+    <Parallax filter={IS_MOBILE_VIEWPORT} image={landing?.fields.background.fields.file.url}>
       <div className={classes.container}>
         <GridContainer>
           <GridItem xs={12} sm={12} md={6}>

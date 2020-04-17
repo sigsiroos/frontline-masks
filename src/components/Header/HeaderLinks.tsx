@@ -21,12 +21,16 @@ import Button from "components/CustomButtons/Button";
 import styles from "assets/jss/material-kit-react/components/headerLinksStyle.js";
 import { useContentfulContext } from "lib/contentful";
 
+/** @jsx jsx */
+import { jsx, css } from '@emotion/core';
+import { DESKTOP_VIEWPORT_WIDTH, IS_DESKTOP_VIEWPORT } from "utils";
+
 const useStyles = makeStyles(styles as Parameters<typeof makeStyles>[0]);
 
 const HeaderLinks: React.FC = props => {
   const classes = useStyles();
 
-  const { globals } = useContentfulContext();
+  const { globals, getColorEntry } = useContentfulContext();
 
   return (
     <List className={classes.list}>
@@ -57,9 +61,15 @@ const HeaderLinks: React.FC = props => {
         <Button
           component={Link}
           to="/request"
-          color="transparent"
+          color={IS_DESKTOP_VIEWPORT ? 'white' : 'transparent'}
           className={classes.navLink}
-          textColor={globals?.fields.colors.fields.orange.fields?.code}
+          textColor={getColorEntry(globals?.fields.colors.fields.orange.sys.id)?.fields?.code}
+          css={css`
+            @media (min-width: ${DESKTOP_VIEWPORT_WIDTH}px) {
+              &:hover { background: white !important; }
+              .header-changed & { box-shadow: none; }
+            }
+          `}
         >
           I Need PPE
         </Button>

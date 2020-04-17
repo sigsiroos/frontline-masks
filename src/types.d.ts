@@ -8,6 +8,9 @@ declare type ArrayElement<ArrayType> =
   never;
 
 declare type ResolveType<T> = T extends Promise<infer R> ? R : T;
+
+/** convert a type to the type created by performing `Object.entries` on an instance of this type */
+declare type Entries<T, M = Required<{ [K in keyof T]: [K, T[K]] }>> = M[keyof M][];
 /* ******************************** utility types ******************************** */
 
 declare interface ColorData<N extends string = string, C extends string = string> {
@@ -15,10 +18,17 @@ declare interface ColorData<N extends string = string, C extends string = string
   code: C
 }
 
+/** you may not always receive this due to the (free tier) contentful api's inability to resolve deeply nested entries */
+type FullColorEntry = Entry<ColorData>;
+
+declare type ColorEntry = Omit<FullColorEntry, 'fields'> & Partial<Pick<FullColorEntry, 'fields'>>;
+
 declare interface ColorsData {
   blue: Entry<ColorData<'Blue', '#6dcde3'>>
   orange: Entry<ColorData<'Orange', '#f38530'>>
 }
+
+declare type ColorsEntry = Entry<ColorsData>;
 
 declare type GlobalData = {
   companyName: string,
@@ -31,7 +41,7 @@ declare type GlobalData = {
   colors: Entry<ColorsData>,
 };
 
-declare type GlobalDataEntry = Entry<GlobalData>;
+declare type GlobalsEntry = Entry<GlobalData>;
 
 declare interface SponsorData {
   logo: Asset
@@ -55,13 +65,13 @@ declare interface LandingData {
   actions: Entry<LandingActionData>[]
 };
 
-declare type LandingDataEntry = Entry<LandingData>;
+declare type LandingEntry = Entry<LandingData>;
 
 declare interface LandingActionData {
   title?: string
   iconImage?: Asset
   fontAwesomeIcon?: string
-  iconColor?: string
+  iconColor?: ColorEntry
   description?: string
   link?: string
 };

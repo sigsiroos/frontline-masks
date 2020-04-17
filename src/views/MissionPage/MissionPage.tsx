@@ -14,7 +14,7 @@ import HeaderLinks from "components/Header/HeaderLinks";
 import ProductSection from "./Sections/ProductSection";
 import styles from "assets/jss/material-kit-react/views/landingPage.js";
 import { LandingPageParallax } from './Parallax';
-import { MOBILE_VIEWPORT } from '../../utils';
+import { IS_MOBILE_VIEWPORT } from '../../utils';
 
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
@@ -28,7 +28,7 @@ export default function MissionPage(props: any) {
   return (
     <div>
       <Header
-        color={MOBILE_VIEWPORT ? 'white' : 'transparent'}
+        color={IS_MOBILE_VIEWPORT ? 'white' : 'transparent'}
         // routes={dashboardRoutes}
         brand="FrontlineMasks"
         rightLinks={<HeaderLinks />}

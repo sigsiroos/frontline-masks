@@ -21,7 +21,7 @@ import SponsorsSection from "./Sections/SponsorsSection";
 import { sectionsFadeIn } from "./Parallax/startupAnimation";
 
 import { useContentfulContext } from '../../lib/contentful';
-import { MOBILE_VIEWPORT } from '../../utils';
+import { IS_MOBILE_VIEWPORT } from '../../utils';
 
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
@@ -39,7 +39,7 @@ export default function LandingPage(props: any) {
   return (
     <div css={css`max-width: 100%; overflow-x: hidden;`}>
       <Header
-        color={MOBILE_VIEWPORT ? 'white' : 'transparent'}
+        color={IS_MOBILE_VIEWPORT ? 'white' : 'transparent'}
         // routes={dashboardRoutes}
         brand="FrontlineMasks"
         rightLinks={<HeaderLinks />}
