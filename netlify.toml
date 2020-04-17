@@ -6,7 +6,7 @@
   publish = "build/"
 
   # Default build command.
-  command = "npm run build"
+  command = "yarn build"
 
   # https://github.com/netlify/netlify-lambda
   functions = "lambdas/dist/" #  netlify-lambda reads this

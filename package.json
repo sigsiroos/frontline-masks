@@ -50,7 +50,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "CI=false react-scripts build && npm run build-lambdas",
+    "build": "CI=false react-scripts build && yarn build-lambdas",
     "build-lambdas": "netlify-lambda build ./lambdas/functions",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
