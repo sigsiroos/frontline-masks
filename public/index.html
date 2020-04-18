@@ -58,8 +58,9 @@
     <!-- A little help for the Netlify bots if you're not using a SSG -->
     <!-- https://www.netlify.com/blog/2017/07/20/how-to-integrate-netlifys-form-handling-in-a-react-app/ -->
     <form name="request" netlify netlify-honeypot="bot-field" hidden>
-      <input type="text" name="name" />
-      <input type="email" name="email" />
+      <input type="text" name="name" required />
+      <input type="email" name="email" required />
+      <input type="tel" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
       <textarea name="message"></textarea>
     </form>
 
