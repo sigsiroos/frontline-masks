@@ -1,15 +1,11 @@
 import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
-import { wait } from '../utils';
+import { wait, ORIGIN } from '../utils';
 import type { Entries, GlobalsEntry, ColorsEntry, LandingEntry, ColorEntry } from '../types';
 import type { Sys } from 'contentful';
 
 const contentfulLambdas = axios.create({
-  baseURL: `${
-    (window.location.hostname === 'localhost')
-      ? 'https://develop.frontlinemasks.org'
-      : window.location.origin
-  }/.netlify/functions`,
+  baseURL: `${ORIGIN}/.netlify/functions`,
 });
 
 function useDefaultContext() {

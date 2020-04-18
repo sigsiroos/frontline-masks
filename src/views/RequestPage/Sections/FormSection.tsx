@@ -34,46 +34,16 @@ export default function FormSection() {
     <div className={classes.section}>
       <GridContainer justify="center">
         <GridItem cs={12} sm={12} md={8}>
-          <h2 className={classes.title}>I have PPE to donate</h2>
+          {/* <h2 className={classes.title}>I have PPE to donate</h2>
           <h4 className={classes.description}>
             If you have supply of PPE, please let us know so we can help you donate
-          </h4>
-          <form name="donate" method="POST" data-netlify="true">
-            <GridContainer>
-              <GridItem xs={12} sm={12} md={4}>
-                <CustomInput
-                  labelText="Your Name"
-                  id="name"
-                  formControlProps={{ fullWidth: true }}
-                  inputProps={{ name: 'name' }}
-                />
-              </GridItem>
-              <GridItem xs={12} sm={12} md={4}>
-                <CustomInput
-                  labelText="Your Email"
-                  id="email"
-                  formControlProps={{ fullWidth: true }}
-                  inputProps={{ name: 'email', type: 'email' }}
-                />
-              </GridItem>
-              <GridItem xs={12} sm={12} md={4}>
-                <CustomInput
-                  labelText="Your Phone"
-                  id="phone"
-                  formControlProps={{ fullWidth: true }}
-                  inputProps={{ name: 'phone', type: 'tel' }}
-                />
-              </GridItem>
-              <CustomInput
-                labelText="Your Message"
-                id="message"
-                formControlProps={{ fullWidth: true, className: classes.textArea }}
-                inputProps={{ multiline: true, rows: 5, name: 'message' }}
-              />
-              <GridItem xs={12} sm={12} md={4}>
-                <Button type="submit" color="primary">Send Message</Button>
-              </GridItem>
-            </GridContainer>
+          </h4> */}
+          <form name="request" data-netlify>
+            <input type="text" name="name" required />
+            <input type="email" name="email" required />
+            <input type="tel" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required />
+            <textarea name="message"></textarea>
+            <button type="submit">Request</button>
           </form>
         </GridItem>
       </GridContainer>
