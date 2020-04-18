@@ -21,9 +21,9 @@ export const LandingPageParallax: React.FC = function LandingPageParallax() {
       <div className={classes.container}>
         <GridContainer>
           <GridItem xs={12} sm={12} md={6}>
-            <h1 className={classes.title}>Submit your PPE needs here</h1>
+            <h1 className={classes.title}>Need PPE? We have you covered</h1>
             <h4>
-              We are making every effort to fulfill donation requests.
+              We will make every effort to fulfill donation requests by adding you to our database and having a team of volunteers match you in our network of donors.
             </h4>
             {/* <br />
             <Button

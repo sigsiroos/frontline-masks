@@ -60,7 +60,7 @@ export default function FormSection() {
     `}>
       <GridContainer justify="center">
         <GridItem cs={12} sm={12} md={8}>
-          <h2 className={classes.title}>Please submit your needs here</h2>
+          <h2 className={classes.title}>Please submit your PPE needs here</h2>
           {/* <h4 className={classes.description}>
             We are making every effort to match donors with the requests.
           </h4> */}
