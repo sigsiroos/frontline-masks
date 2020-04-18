@@ -23,7 +23,7 @@ In order to start developing in this project, you will need to have the followin
 - `git`
 - `node`/`npm`
 
-An easy way to install these tools is with [`choco` (for Windows)](https://chocolatey.org/docs/installation) or [`brew` (for Mac)](https://docs.brew.sh/Installation)
+An easy way to install these tools is with [`choco` (for Windows)](https://chocolatey.org/docs/installation) or [`brew` (for Mac and Linux)](https://docs.brew.sh/Installation)
 
 ## Starting the development environment
 
