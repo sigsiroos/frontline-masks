@@ -1,4 +1,6 @@
-# FrontlineMasks
+![FrontlineMasks](src/assets/img/readme/navbar-logo.png)
+
+---
 
 This is [the official website of FrontlineMasks](https://frontlinemasks.org/), a non-profit organization for facilitating donations of Personal Protective Equipment (PPE) during the COVID-19 crisis when PPE is prone to widespread price gouging
 
@@ -11,6 +13,7 @@ This project uses the following components:
         - [The Context API](https://reactjs.org/docs/context.html) for managing global information, such as our Contentful data
     - [TypeScript](https://www.typescriptlang.org/) for a static type system, which is useful for answering questions like ["What properties does the `Button` component use?"](https://github.com/btoo/frontline-masks/blob/develop/src/components/CustomButtons/Button.tsx) or ["What fields have we defined in our Landing Page Contentful Model?"](https://github.com/btoo/frontline-masks/blob/develop/src/types.d.ts#L54-L66)
     - [Emotion](https://emotion.sh/) for styling and CSS
+    - [Material UI Kit](https://demos.creative-tim.com/material-kit-react/#/documentation/tutorial) ([demo](https://demos.creative-tim.com/material-kit-react/#/)) for a starter template using [React and Google's Material Design framework](https://material-ui.com/)
 - [Contentful](https://app.contentful.com/spaces/ab792hsrcg3y) for our database
 - [Netlify](https://www.netlify.com/) for hosting the UI @ https://frontlinemasks.org/ (and other environments, e.g. https://develop.frontlinemasks.org/) and the [serverless functions](https://en.wikipedia.org/wiki/Serverless_computing) that we use as a proxy between our app and the Contentful API
 
