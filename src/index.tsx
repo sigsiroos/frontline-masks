@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { createBrowserHistory } from "history";
 import { Router, Route } from "react-router-dom";
 import { AnimatedSwitch } from 'react-router-transition';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 import "assets/scss/material-kit-react.scss?v=1.8.0";
 
@@ -24,7 +25,7 @@ import { jsx, css } from '@emotion/core';
 const hist = createBrowserHistory();
 
 const Root: React.FC = function Root() {
-  const { globals, landing } = useContentfulContext();
+  const { globals, landing, colorCodes } = useContentfulContext();
 
   if (!globals || !landing) {
     return (
@@ -40,31 +41,39 @@ const Root: React.FC = function Root() {
   }
 
   return (
-    <Router history={hist}>
-      <ScrollToTop />
-      <AnimatedSwitch
-        atEnter={{ opacity: 0 }}
-        atLeave={{ opacity: 0 }}
-        atActive={{ opacity: 1 }}
-        css={css`
-          position: relative;
-          > div {
-            position: absolute;
-            width: 100%;
-          }
-        `}
-      >
-        {/* <Route path="/landing-page" component={LandingPage} /> */}
-        {/* <Route path="/profile-page" component={ProfilePage} /> */}
-        {/* <Route path="/login-page" component={LoginPage} /> */}
-        {/* <Route path="/" component={Components} /> */}
+    <ThemeProvider theme={createMuiTheme({
+      /** @see {@tutorial https://material-ui.com/customization/palette/} */
+      palette: {
+        primary: { main: colorCodes.blue || '#6dcde3' },
+        secondary: { main: colorCodes.orange || '#f38530' },
+      },
+    })}>
+      <Router history={hist}>
+        <ScrollToTop />
+        <AnimatedSwitch
+          atEnter={{ opacity: 0 }}
+          atLeave={{ opacity: 0 }}
+          atActive={{ opacity: 1 }}
+          css={css`
+            position: relative;
+            > div {
+              position: absolute;
+              width: 100%;
+            }
+          `}
+        >
+          {/* <Route path="/landing-page" component={LandingPage} /> */}
+          {/* <Route path="/profile-page" component={ProfilePage} /> */}
+          {/* <Route path="/login-page" component={LoginPage} /> */}
+          {/* <Route path="/" component={Components} /> */}
 
-        <Route path="/request" component={RequestPage} />
-        <Route path="/donate" component={DonatePage} />
-        <Route path="/mission" component={MissionPage} />
-        <Route path="/" component={LandingPage} />
-      </AnimatedSwitch>
-    </Router>
+          <Route path="/request" component={RequestPage} />
+          <Route path="/donate" component={DonatePage} />
+          <Route path="/mission" component={MissionPage} />
+          <Route path="/" component={LandingPage} />
+        </AnimatedSwitch>
+      </Router>
+    </ThemeProvider>
   )
 }
 

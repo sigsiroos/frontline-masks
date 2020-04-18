@@ -14,7 +14,7 @@ import Explore from "@material-ui/icons/Explore";
 import GridContainer from "components/Grid/GridContainer";
 import GridItem from "components/Grid/GridItem";
 import Header from "components/Header/Header";
-import CustomInput from "components/CustomInput/CustomInput.js";
+import CustomInput from "components/CustomInput/CustomInput";
 import CustomDropdown from "components/CustomDropdown/CustomDropdown.js";
 import Button from "components/CustomButtons/Button";
 

@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import GridContainer from "components/Grid/GridContainer";
 import GridItem from "components/Grid/GridItem";
-import CustomInput from "components/CustomInput/CustomInput.js";
+import CustomInput from "components/CustomInput/CustomInput";
 import Button from "components/CustomButtons/Button";
 import styles from "assets/jss/material-kit-react/views/landingPageSections/workStyle.js";
 import { useContentfulContext } from "contexts/contentful";
+import { DOMAttributes } from 'react';
 
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
@@ -28,52 +29,81 @@ export default function FormSection() {
   const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
 
+  const [requestStatus, setRequestStatus] = useState(undefined as undefined | string | Error);
+
   const { colorCodes } = useContentfulContext();
 
+  /** @see {@tutorial https://www.netlify.com/blog/2017/07/20/how-to-integrate-netlifys-form-handling-in-a-react-app/} */
+  const handleSubmit: DOMAttributes<HTMLFormElement>['onSubmit'] = async e => {
+    try {
+      setRequestStatus(undefined);
+      e.preventDefault();
+      const { ORIGIN, wait } = await import('utils');
+      await wait(fetch(`${ORIGIN}/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode({ "form-name": "request", name, email, phone, message })
+      }), 888);
+      setRequestStatus('Message sent!');
+    } catch (err) {
+      setRequestStatus(err instanceof Error ? err : new Error(err));
+    }
+  };
+
   return (
-    <div className={classes.section}>
+    <div className={classes.section} css={css`
+      .MuiInputBase-formControl::after {
+        border-color: ${colorCodes.blue} !important;
+      }
+    `}>
       <GridContainer justify="center">
         <GridItem cs={12} sm={12} md={8}>
           <h2 className={classes.title}>Please submit your needs here</h2>
           <h4 className={classes.description}>
             We are making every effort to match donors with the requests.
           </h4>
-          <GridContainer>
-            <GridItem xs={12} sm={12} md={4}>
+          <form onSubmit={handleSubmit}>
+            <GridContainer>
+              <GridItem xs={12} sm={12} md={4}>
+                <CustomInput
+                  labelText="Your Name"
+                  id="name"
+                  formControlProps={{ fullWidth: true }}
+                  inputProps={{ name: 'name', onChange: e => setName((e.target as any)?.value) }}
+                />
+              </GridItem>
+              <GridItem xs={12} sm={12} md={4}>
+                <CustomInput
+                  labelText="Your Email"
+                  id="email"
+                  formControlProps={{ fullWidth: true }}
+                  inputProps={{ name: 'email', type: 'email', onChange: e => setEmail((e.target as any)?.value) }}
+                />
+              </GridItem>
+              <GridItem xs={12} sm={12} md={4}>
+                <CustomInput
+                  labelText="Your Phone"
+                  id="phone"
+                  formControlProps={{ fullWidth: true }}
+                  inputProps={{ name: 'phone', type: 'tel', onChange: e => setPhone((e.target as any)?.value) }}
+                />
+              </GridItem>
               <CustomInput
-                labelText="Your Name"
-                id="name"
-                formControlProps={{ fullWidth: true }}
-                inputProps={{ name: 'name', onChange: setName }}
+                labelText="Your Message"
+                id="message"
+                formControlProps={{ fullWidth: true, className: classes.textArea }}
+                inputProps={{ multiline: true, rows: 5, name: 'message', onChange: e => setMessage((e.target as any)?.value) }}
               />
-            </GridItem>
-            <GridItem xs={12} sm={12} md={4}>
-              <CustomInput
-                labelText="Your Email"
-                id="email"
-                formControlProps={{ fullWidth: true }}
-                inputProps={{ name: 'email', type: 'email', onChange: setEmail }}
-              />
-            </GridItem>
-            <GridItem xs={12} sm={12} md={4}>
-              <CustomInput
-                labelText="Your Phone"
-                id="phone"
-                formControlProps={{ fullWidth: true }}
-                inputProps={{ name: 'phone', type: 'tel', onChange: setPhone }}
-              />
-            </GridItem>
-            <CustomInput
-              labelText="Your Message"
-              id="message"
-              formControlProps={{ fullWidth: true, className: classes.textArea }}
-              inputProps={{ multiline: true, rows: 5, name: 'message', onChange: setMessage }}
-            />
-            <GridItem xs={12} sm={12} md={4}>
-              {console.log(colorCodes.blue)}
-              <Button css={css`background-color: ${colorCodes.blue} !important;`}>Send Message</Button>
-            </GridItem>
-          </GridContainer>
+              <GridItem xs={12} sm={12} md={12}>
+                <Button type='submit' css={css`background-color: ${colorCodes.blue} !important;`}>
+                  Send Message
+                </Button>
+                <span css={css`margin-left: 1rem; color: ${colorCodes.success};`}>
+                  {requestStatus instanceof Error ? '' : requestStatus}
+                </span>
+              </GridItem>
+            </GridContainer>
+          </form>
         </GridItem>
       </GridContainer>
     </div>

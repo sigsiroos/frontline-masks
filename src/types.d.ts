@@ -24,8 +24,10 @@ type FullColorEntry = Entry<ColorData>;
 declare type ColorEntry = Omit<FullColorEntry, 'fields'> & Partial<Pick<FullColorEntry, 'fields'>>;
 
 declare interface ColorsData {
-  blue: Entry<ColorData<'Blue', '#6dcde3'>>
-  orange: Entry<ColorData<'Orange', '#f38530'>>
+  blue: Entry<ColorData<'Blue', '#6dcde3'>>,
+  orange: Entry<ColorData<'Orange', '#f38530'>>,
+  text: Entry<ColorsData<'Text', '#3C4858'>>,
+  success: Entry<ColorsData<'Success', '#4bb543'>>,
 }
 
 declare type ColorsEntry = Entry<ColorsData>;

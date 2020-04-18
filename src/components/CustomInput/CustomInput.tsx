@@ -11,9 +11,21 @@ import Input from "@material-ui/core/Input";
 
 import styles from "assets/jss/material-kit-react/components/customInputStyle.js";
 
-const useStyles = makeStyles(styles);
+import { DOMAttributes } from 'react';
 
-export default function CustomInput(props) {
+const useStyles = makeStyles(styles as Parameters<typeof makeStyles>[0]);
+
+const CustomInput: React.FC<{
+  labelText?: JSX.Element | string,
+  labelProps?: DOMAttributes<HTMLLabelElement> & { [key: string]: any },
+  id?: string,
+  inputProps?: DOMAttributes<HTMLInputElement> & { [key: string]: any },
+  formControlProps?: DOMAttributes<HTMLDivElement> & { [key: string]: any, className?: string },
+  inputRootCustomClasses?: string,
+  error?: boolean,
+  success?: boolean,
+  white?: boolean,
+}> = function CustomInput(props) {
   const classes = useStyles();
   const {
     formControlProps,
@@ -38,7 +50,7 @@ export default function CustomInput(props) {
     [classes.whiteUnderline]: white
   });
   const marginTop = classNames({
-    [inputRootCustomClasses]: inputRootCustomClasses !== undefined
+    [inputRootCustomClasses ?? '']: inputRootCustomClasses !== undefined
   });
   const inputClasses = classNames({
     [classes.input]: true,
@@ -72,20 +84,10 @@ export default function CustomInput(props) {
           underline: underlineClasses
         }}
         id={id}
-        {...inputProps}
+        {...inputProps as any}
       />
     </FormControl>
   );
 }
 
-CustomInput.propTypes = {
-  labelText: PropTypes.node,
-  labelProps: PropTypes.object,
-  id: PropTypes.string,
-  inputProps: PropTypes.object,
-  formControlProps: PropTypes.object,
-  inputRootCustomClasses: PropTypes.string,
-  error: PropTypes.bool,
-  success: PropTypes.bool,
-  white: PropTypes.bool
-};
+export default CustomInput;

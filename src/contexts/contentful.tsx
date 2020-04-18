@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { wait, ORIGIN } from '../utils';
-import type { Entries, GlobalsEntry, ColorsEntry, LandingEntry, ColorEntry } from '../types';
+import type { Entries, GlobalsEntry, ColorsEntry, LandingEntry, ColorEntry, ColorsData, ColorData } from '../types';
 import type { Sys } from 'contentful';
 
 const contentfulLambdas = axios.create({
@@ -39,10 +39,10 @@ function useDefaultContext() {
 
   const getColorEntry = (id?: Sys['id']) => id ? colorsById[id] : undefined;
 
-  const colorCodes = {
-    blue: getColorEntry(colors?.fields.blue.sys.id)?.fields?.code,
-    orange: getColorEntry(colors?.fields.orange.sys.id)?.fields?.code,
-  } as const;
+  const colorCodes = colorTuples.reduce((accumulator, [name, colorEntry]) => {
+    if (name) accumulator[name] = getColorEntry(colorEntry.sys?.id)?.fields?.code;
+    return accumulator
+  }, {} as { [key in keyof ColorsData]?: ColorData['code'] | undefined });
 
   return { globals, colors, landing, getColorEntry, colorCodes };
 };
