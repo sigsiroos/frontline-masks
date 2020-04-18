@@ -49,7 +49,7 @@
     "prettier": "^2.0.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "npm install && react-scripts start",
     "build": "CI=false react-scripts build && npm run build-lambdas",
     "build-lambdas": "netlify-lambda build ./lambdas/functions",
     "test": "react-scripts test --env=jsdom",
