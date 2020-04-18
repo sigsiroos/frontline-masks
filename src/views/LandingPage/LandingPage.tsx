@@ -20,7 +20,7 @@ import ActionsSection from "./Sections/ActionsSection"
 import SponsorsSection from "./Sections/SponsorsSection";
 import { sectionsFadeIn } from "./Parallax/startupAnimation";
 
-import { useContentfulContext } from '../../lib/contentful';
+import { useContentfulContext } from '../../contexts/contentful';
 import { IS_MOBILE_VIEWPORT } from '../../utils';
 
 /** @jsx jsx */

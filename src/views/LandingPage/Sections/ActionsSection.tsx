@@ -12,7 +12,7 @@ import GridItem from "components/Grid/GridItem";
 import InfoArea from "components/InfoArea/InfoArea";
 
 import styles from "assets/jss/material-kit-react/views/landingPageSections/productStyle";
-import { useContentfulContext } from "lib/contentful";
+import { useContentfulContext } from "contexts/contentful";
 
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';

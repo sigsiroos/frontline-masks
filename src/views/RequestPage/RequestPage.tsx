@@ -18,7 +18,7 @@ import { LandingPageParallax } from './Parallax';
 // Sections for this page
 import FormSection from "./Sections/FormSection";
 
-import { useContentfulContext } from '../../lib/contentful';
+import { useContentfulContext } from '../../contexts/contentful';
 
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';

@@ -5,7 +5,7 @@ import GridItem from "components/Grid/GridItem";
 import CustomInput from "components/CustomInput/CustomInput.js";
 import Button from "components/CustomButtons/Button";
 import styles from "assets/jss/material-kit-react/views/landingPageSections/workStyle.js";
-import { useContentfulContext } from "lib/contentful";
+import { useContentfulContext } from "contexts/contentful";
 
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';

@@ -19,7 +19,7 @@ import styles from "assets/jss/material-kit-react/views/landingPageSections/team
 import team1 from "assets/img/faces/avatar.jpg";
 import team2 from "assets/img/faces/christian.jpg";
 import team3 from "assets/img/faces/kendall.jpg";
-import { useContentfulContext } from "lib/contentful";
+import { useContentfulContext } from "contexts/contentful";
 
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';

@@ -15,7 +15,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import Favorite from "@material-ui/icons/Favorite";
 
 import styles from "assets/jss/material-kit-react/components/footerStyle.js";
-import { useContentfulContext } from "lib/contentful";
+import { useContentfulContext } from "contexts/contentful";
 
 const useStyles = makeStyles(styles as Parameters<typeof makeStyles>[0]);
 

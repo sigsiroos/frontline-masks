@@ -14,7 +14,7 @@ import RequestPage from "views/RequestPage/RequestPage";
 import MissionPage from "views/MissionPage/MissionPage";
 // import ProfilePage from "views/ProfilePage/ProfilePage.js";
 // import LoginPage from "views/LoginPage/LoginPage.js";
-import { ContentfulProvider, useContentfulContext } from "./lib/contentful";
+import { ContentfulProvider, useContentfulContext } from "./contexts/contentful";
 import { HeartLoader } from "components/HeartLoader";
 import { ScrollToTop } from "components/ScrollToTop";
 

@@ -4,7 +4,7 @@ import GridContainer from "components/Grid/GridContainer";
 import GridItem from "components/Grid/GridItem";
 import Parallax from "components/Parallax/Parallax.js";
 import styles from "assets/jss/material-kit-react/views/landingPage.js";
-import { useContentfulContext } from '../../../lib/contentful';
+import { useContentfulContext } from '../../../contexts/contentful';
 import { parallaxFadeIn, parallaxTextSlideIn } from './startupAnimation';
 import { IS_MOBILE_VIEWPORT } from 'utils';
 
