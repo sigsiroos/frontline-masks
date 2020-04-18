@@ -36,7 +36,7 @@ type Props =  Omit<ButtonProps<ButtonTypeMap['defaultComponent'], {
 }>, 'color' | 'size'>
   & {
     size?: ArrayElement<typeof SIZE_OPTIONS>
-    color: NonNullable<ButtonProps['color'] | ArrayElement<typeof COLOR_OPTIONS>>
+    color?: NonNullable<ButtonProps['color'] | ArrayElement<typeof COLOR_OPTIONS>>
     textColor?: string
   }
   & AnchorHTMLAttributes<any>
@@ -63,7 +63,7 @@ const RegularButton = React.forwardRef((props: Props, ref) => {
   const btnClasses = classNames({
     [classes.button]: true,
     [classes[size ?? '']]: size,
-    [classes[color]]: color,
+    [classes[color ?? '']]: color,
     [classes.round]: round,
     [classes.fullWidth]: fullWidth,
     [classes.disabled]: disabled,

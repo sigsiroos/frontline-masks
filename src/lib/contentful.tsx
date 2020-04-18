@@ -39,7 +39,12 @@ function useDefaultContext() {
 
   const getColorEntry = (id?: Sys['id']) => id ? colorsById[id] : undefined;
 
-  return { globals, colors, landing, getColorEntry };
+  const colorCodes = {
+    blue: getColorEntry(colors?.fields.blue.sys.id)?.fields?.code,
+    orange: getColorEntry(colors?.fields.orange.sys.id)?.fields?.code,
+  } as const;
+
+  return { globals, colors, landing, getColorEntry, colorCodes };
 };
 
 export const ContentfulContext = React.createContext({} as ReturnType<typeof useDefaultContext>);
