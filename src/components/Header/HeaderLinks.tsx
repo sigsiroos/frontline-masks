@@ -27,7 +27,9 @@ import { DESKTOP_VIEWPORT_WIDTH, IS_DESKTOP_VIEWPORT } from "utils";
 
 const useStyles = makeStyles(styles as Parameters<typeof makeStyles>[0]);
 
-const HeaderLinks: React.FC = props => {
+const HeaderLinks: React.FC<{
+  headerChangedFromScrolling?: boolean
+}> = props => {
   const classes = useStyles();
 
   const { globals, getColorEntry } = useContentfulContext();
@@ -61,10 +63,10 @@ const HeaderLinks: React.FC = props => {
         <Button
           component={Link}
           to="/request"
-          color={IS_DESKTOP_VIEWPORT ? 'white' : 'transparent'}
+          color={props.headerChangedFromScrolling ? 'transparent' : IS_DESKTOP_VIEWPORT ? 'white' : 'transparent'}
           className={classes.navLink}
           textColor={getColorEntry(globals?.fields.colors.fields.orange.sys.id)?.fields?.code}
-          css={css`
+          css={props.headerChangedFromScrolling ? undefined : css`
             @media (min-width: ${DESKTOP_VIEWPORT_WIDTH}px) {
               &:hover { background: white !important; }
               .header-changed & { box-shadow: none; }

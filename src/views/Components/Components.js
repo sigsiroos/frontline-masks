@@ -39,7 +39,7 @@ export default function Components(props) {
     <div>
       <Header
         brand="Material Kit React"
-        rightLinks={<HeaderLinks />}
+        rightLinks={({ headerChangedFromScrolling }) => <HeaderLinks headerChangedFromScrolling={headerChangedFromScrolling} />}
         fixed
         color="transparent"
         changeColorOnScroll={{

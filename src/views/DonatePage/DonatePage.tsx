@@ -37,7 +37,7 @@ export default function LandingPage(props: any) {
         color="transparent"
         // routes={dashboardRoutes}
         brand="FrontlineMasks"
-        rightLinks={<HeaderLinks />}
+        rightLinks={({ headerChangedFromScrolling }) => <HeaderLinks headerChangedFromScrolling={headerChangedFromScrolling} />}
         fixed
         changeColorOnScroll={{
           height: 88,

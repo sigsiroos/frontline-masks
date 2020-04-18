@@ -31,7 +31,7 @@ export default function MissionPage(props: any) {
         color={IS_MOBILE_VIEWPORT ? 'white' : 'transparent'}
         // routes={dashboardRoutes}
         brand="FrontlineMasks"
-        rightLinks={<HeaderLinks />}
+        rightLinks={({ headerChangedFromScrolling }) => <HeaderLinks headerChangedFromScrolling={headerChangedFromScrolling} />}
         fixed
         changeColorOnScroll={{
           height: 88,

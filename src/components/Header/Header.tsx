@@ -25,7 +25,9 @@ const useStyles = makeStyles(styles as Parameters<typeof makeStyles>[0]);
 
 const Header: React.FC<{
   color: "primary" | "info" | "success" | "warning" | "danger" | "transparent" | "white" | "rose" | "dark",
-  rightLinks?: JSX.Element,
+  rightLinks?: JSX.Element | ((args: {
+    headerChangedFromScrolling: boolean
+  }) => JSX.Element),
   leftLinks?: JSX.Element,
   brand?: string,
   fixed?: boolean,
@@ -44,6 +46,8 @@ const Header: React.FC<{
   },
 }> = props => {
   const { globals } = useContentfulContext();
+
+  const [headerChangedFromScrolling, setHeaderChangedFromScrolling] = React.useState(false);
 
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -67,17 +71,19 @@ const Header: React.FC<{
     if (windowsScrollTop > changeColorOnScroll.height) {
       document.body
         .getElementsByTagName("header")[0]
-        .classList.remove(classes[color], headerChangedClass);
+        .classList.remove(classes[color]);
       document.body
         .getElementsByTagName("header")[0]
         .classList.add(classes[changeColorOnScroll.color], headerChangedClass);
+      setHeaderChangedFromScrolling(true);
     } else {
       document.body
         .getElementsByTagName("header")[0]
-        .classList.add(classes[color], headerChangedClass);
+        .classList.add(classes[color]);
       document.body
         .getElementsByTagName("header")[0]
         .classList.remove(classes[changeColorOnScroll.color], headerChangedClass);
+      setHeaderChangedFromScrolling(false);
     }
   };
 
@@ -109,6 +115,10 @@ const Header: React.FC<{
     </Button>
   );
 
+  const rightLinksRendered = (typeof rightLinks === 'function')
+      ? rightLinks({ headerChangedFromScrolling })
+      : rightLinks;
+
   return (
     <AppBar className={appBarClasses} css={css`padding: .25rem 0 !important;`}>
       <Toolbar className={classes.container}>
@@ -123,7 +133,7 @@ const Header: React.FC<{
           )}
         </div>
         <Hidden smDown implementation="css">
-          {rightLinks}
+          {rightLinksRendered}
         </Hidden>
         <Hidden mdUp>
           <IconButton
@@ -147,7 +157,7 @@ const Header: React.FC<{
         >
           <div className={classes.appResponsive}>
             {leftLinks}
-            {rightLinks}
+            {rightLinksRendered}
           </div>
         </Drawer>
       </Hidden>
@@ -171,7 +181,7 @@ const Header: React.FC<{
     "rose",
     "dark"
   ]),
-  rightLinks: PropTypes.node,
+  rightLinks: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
   leftLinks: PropTypes.node,
   brand: PropTypes.string,
   fixed: PropTypes.bool,
