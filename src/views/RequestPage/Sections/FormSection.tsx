@@ -29,7 +29,7 @@ export default function FormSection() {
   const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
 
-  const [requestStatus, setRequestStatus] = useState(undefined as undefined | string | Error);
+  const [requestStatus, setRequestStatus] = useState(undefined as undefined | string | Error | Promise<any>);
 
   const { colorCodes } = useContentfulContext();
 
@@ -39,11 +39,13 @@ export default function FormSection() {
       setRequestStatus(undefined);
       e.preventDefault();
       const { ORIGIN, wait } = await import('utils');
-      await wait(fetch(`${ORIGIN}/`, {
+      const request = wait(fetch(`${ORIGIN}/`, {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: encode({ "form-name": "request", name, email, phone, message })
-      }), 888);
+      }), 2222);
+      setRequestStatus(request)
+      await request;
       setRequestStatus('Message sent!');
     } catch (err) {
       setRequestStatus(err instanceof Error ? err : new Error(err));
@@ -59,9 +61,9 @@ export default function FormSection() {
       <GridContainer justify="center">
         <GridItem cs={12} sm={12} md={8}>
           <h2 className={classes.title}>Please submit your needs here</h2>
-          <h4 className={classes.description}>
+          {/* <h4 className={classes.description}>
             We are making every effort to match donors with the requests.
-          </h4>
+          </h4> */}
           <form onSubmit={handleSubmit}>
             <GridContainer>
               <GridItem xs={12} sm={12} md={4}>
@@ -98,8 +100,12 @@ export default function FormSection() {
                 <Button type='submit' css={css`background-color: ${colorCodes.blue} !important;`}>
                   Send Message
                 </Button>
-                <span css={css`margin-left: 1rem; color: ${colorCodes.success};`}>
-                  {requestStatus instanceof Error ? '' : requestStatus}
+                <span css={css`margin-left: 1rem; color: ${typeof requestStatus === 'string' ? colorCodes.success : colorCodes.text};`}>
+                  {
+                    requestStatus instanceof Error ? '' :
+                    requestStatus instanceof Promise ? <i className="fas fa-circle-notch fa-spin" /> :
+                    requestStatus
+                  }
                 </span>
               </GridItem>
             </GridContainer>
