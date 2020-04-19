@@ -77,3 +77,21 @@ declare interface LandingActionData {
   description?: string
   link?: string
 };
+
+/**
+ * the data for the mission view from contentful.
+ * includes title, tagline, background info, statement, statement title, callToAction title and text
+ * @see {@link https://app.contentful.com/spaces/ab792hsrcg3y/entries/5V4oqAqYSwWxB04fje6LAt}
+ * @see {@link lambdas/mission.js}
+ */
+declare interface MissionData {
+  title: string,
+  tagline: string,
+  background: string,
+  missionStatementTitle: string,
+  statement: string,
+  callToActionTitle: string,
+  callToActionText: string
+};
+
+declare type MissionEntry = Entry<MissionData>;
