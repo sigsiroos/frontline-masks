@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React from "react";
+import React, { useState } from "react";
 import DeleteIcon from "@material-ui/icons/Delete";
 import IconButton from "@material-ui/core/IconButton";
 // react components for routing our app without refresh
@@ -31,9 +31,14 @@ const HeaderLinks: React.FC<{
   headerChangedFromScrolling?: boolean
 }> = props => {
   const classes = useStyles();
+  const [activeLink, setActiveLink] = useState('request');
 
   const { globals, getColorEntry } = useContentfulContext();
 
+  const handleClickedLink = (event: any) => setActiveLink(event.currentTarget.id);
+  const activeLinkTextColor = getColorEntry(globals?.fields.colors.fields.orange.sys.id)?.fields?.code;
+  const activeLinkColor = props.headerChangedFromScrolling ? 'transparent' : IS_DESKTOP_VIEWPORT ? 'white' : 'transparent';
+  console.log('activeLinkColor', activeLinkColor);
   return (
     <List className={classes.list}>
       {/* <ListItem className={classes.listItem}>
@@ -62,16 +67,18 @@ const HeaderLinks: React.FC<{
       <ListItem className={classes.listItem}>
         <Button
           component={Link}
+          id="request"
           to="/request"
-          color={props.headerChangedFromScrolling ? 'transparent' : IS_DESKTOP_VIEWPORT ? 'white' : 'transparent'}
+          color={activeLink === 'request' ? activeLinkColor : 'transparent'}
           className={classes.navLink}
-          textColor={getColorEntry(globals?.fields.colors.fields.orange.sys.id)?.fields?.code}
+          textColor={activeLink === 'request' ? activeLinkTextColor : ''}
           css={props.headerChangedFromScrolling ? undefined : css`
             @media (min-width: ${DESKTOP_VIEWPORT_WIDTH}px) {
               &:hover { background: white !important; }
               .header-changed & { box-shadow: none; }
             }
           `}
+          onClick={handleClickedLink}
         >
           I Need PPE
         </Button>
@@ -80,10 +87,19 @@ const HeaderLinks: React.FC<{
         <Button
           // component={Link}
           // to="/donate"
+          id="donate"
           href="https://www.gofundme.com/f/tztm7-ppe-for-the-frontlines"
           target="_blank"
-          color="transparent"
+          color={activeLink === 'donate' ? activeLinkColor : 'transparent'}
+          textColor={activeLink === 'donate' ? activeLinkTextColor : ''}
           className={classes.navLink}
+          onClick={handleClickedLink}
+          css={props.headerChangedFromScrolling ? undefined : css`
+          @media (min-width: ${DESKTOP_VIEWPORT_WIDTH}px) {
+            &:hover { background: white !important; }
+            .header-changed & { box-shadow: none; }
+          }
+        `}
         >
           Donate
         </Button>
@@ -91,9 +107,12 @@ const HeaderLinks: React.FC<{
       <ListItem className={classes.listItem}>
         <Button
           component={Link}
+          id="mission"
           to="/mission"
-          color="transparent"
+          color={activeLink === 'mission' ? activeLinkColor : 'transparent'}
+          textColor={activeLink === 'mission' ? activeLinkTextColor : ''}
           className={classes.navLink}
+          onClick={handleClickedLink}
         >
           Mission
         </Button>
@@ -145,10 +164,13 @@ const HeaderLinks: React.FC<{
           classes={{ tooltip: classes.tooltip }}
         >
           <Button
-            color="transparent"
+            color={activeLink === 'instagram' ? activeLinkColor : 'transparent'}
+            id="instagram"
             href={globals?.fields.instagram}
             target="_blank"
             className={classes.navLink}
+            textColor={activeLink === 'instagram' ? activeLinkTextColor : ''}
+            onClick={handleClickedLink}
           >
             <i className={classes.socialIcons + " fab fa-instagram"} />
           </Button>
