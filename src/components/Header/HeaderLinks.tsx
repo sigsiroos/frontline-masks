@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import DeleteIcon from "@material-ui/icons/Delete";
 import IconButton from "@material-ui/core/IconButton";
 // react components for routing our app without refresh
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
@@ -22,23 +22,39 @@ import styles from "assets/jss/material-kit-react/components/headerLinksStyle.js
 import { useContentfulContext } from "contexts/contentful";
 
 /** @jsx jsx */
-import { jsx, css } from '@emotion/core';
+import { jsx, css } from "@emotion/core";
 import { DESKTOP_VIEWPORT_WIDTH, IS_DESKTOP_VIEWPORT } from "utils";
 
 const useStyles = makeStyles(styles as Parameters<typeof makeStyles>[0]);
 
 const HeaderLinks: React.FC<{
-  headerChangedFromScrolling?: boolean
-}> = props => {
+  headerChangedFromScrolling?: boolean;
+}> = (props) => {
   const classes = useStyles();
-  const [activeLink, setActiveLink] = useState('request');
+  let activeLink = useLocation().pathname.replace(/\//, "");
 
   const { globals, getColorEntry } = useContentfulContext();
+  const activeLinkTextColor = getColorEntry(
+    globals?.fields.colors.fields.orange.sys.id
+  )?.fields?.code;
+  const activeLinkColor = props.headerChangedFromScrolling
+    ? "transparent"
+    : IS_DESKTOP_VIEWPORT
+    ? "white"
+    : "transparent";
 
-  const handleClickedLink = (event: any) => setActiveLink(event.currentTarget.id);
-  const activeLinkTextColor = getColorEntry(globals?.fields.colors.fields.orange.sys.id)?.fields?.code;
-  const activeLinkColor = props.headerChangedFromScrolling ? 'transparent' : IS_DESKTOP_VIEWPORT ? 'white' : 'transparent';
-  console.log('activeLinkColor', activeLinkColor);
+  const hoveredButtonStyles = css`
+    @media (min-width: ${DESKTOP_VIEWPORT_WIDTH}px) {
+      &:hover {
+        background: white !important;
+        color: ${activeLinkTextColor} !important;
+      }
+      .header-changed & {
+        box-shadow: none;
+      }
+    }
+  `;
+
   return (
     <List className={classes.list}>
       {/* <ListItem className={classes.listItem}>
@@ -67,18 +83,13 @@ const HeaderLinks: React.FC<{
       <ListItem className={classes.listItem}>
         <Button
           component={Link}
-          id="request"
           to="/request"
-          color={activeLink === 'request' ? activeLinkColor : 'transparent'}
+          color={activeLink === "request" ? activeLinkColor : "transparent"}
+          css={
+            props.headerChangedFromScrolling ? undefined : hoveredButtonStyles
+          }
           className={classes.navLink}
-          textColor={activeLink === 'request' ? activeLinkTextColor : ''}
-          css={props.headerChangedFromScrolling ? undefined : css`
-            @media (min-width: ${DESKTOP_VIEWPORT_WIDTH}px) {
-              &:hover { background: white !important; }
-              .header-changed & { box-shadow: none; }
-            }
-          `}
-          onClick={handleClickedLink}
+          textColor={activeLink === "request" ? activeLinkTextColor : ""}
         >
           I Need PPE
         </Button>
@@ -87,19 +98,13 @@ const HeaderLinks: React.FC<{
         <Button
           // component={Link}
           // to="/donate"
-          id="donate"
           href="https://www.gofundme.com/f/tztm7-ppe-for-the-frontlines"
           target="_blank"
-          color={activeLink === 'donate' ? activeLinkColor : 'transparent'}
-          textColor={activeLink === 'donate' ? activeLinkTextColor : ''}
-          className={classes.navLink}
-          onClick={handleClickedLink}
-          css={props.headerChangedFromScrolling ? undefined : css`
-          @media (min-width: ${DESKTOP_VIEWPORT_WIDTH}px) {
-            &:hover { background: white !important; }
-            .header-changed & { box-shadow: none; }
+          color="transparent"
+          css={
+            props.headerChangedFromScrolling ? undefined : hoveredButtonStyles
           }
-        `}
+          className={classes.navLink}
         >
           Donate
         </Button>
@@ -107,12 +112,13 @@ const HeaderLinks: React.FC<{
       <ListItem className={classes.listItem}>
         <Button
           component={Link}
-          id="mission"
           to="/mission"
-          color={activeLink === 'mission' ? activeLinkColor : 'transparent'}
-          textColor={activeLink === 'mission' ? activeLinkTextColor : ''}
+          color={activeLink === "mission" ? activeLinkColor : "transparent"}
+          css={
+            props.headerChangedFromScrolling ? undefined : hoveredButtonStyles
+          }
+          textColor={activeLink === "mission" ? activeLinkTextColor : ""}
           className={classes.navLink}
-          onClick={handleClickedLink}
         >
           Mission
         </Button>
@@ -158,19 +164,18 @@ const HeaderLinks: React.FC<{
       </ListItem> */}
       <ListItem className={classes.listItem}>
         <Tooltip
-          id="instagram-tooltip"
           title="Follow us on instagram"
           placement={window.innerWidth > 959 ? "top" : "left"}
           classes={{ tooltip: classes.tooltip }}
         >
           <Button
-            color={activeLink === 'instagram' ? activeLinkColor : 'transparent'}
-            id="instagram"
+            color="transparent"
+            css={
+              props.headerChangedFromScrolling ? undefined : hoveredButtonStyles
+            }
             href={globals?.fields.instagram}
             target="_blank"
             className={classes.navLink}
-            textColor={activeLink === 'instagram' ? activeLinkTextColor : ''}
-            onClick={handleClickedLink}
           >
             <i className={classes.socialIcons + " fab fa-instagram"} />
           </Button>
@@ -178,6 +183,6 @@ const HeaderLinks: React.FC<{
       </ListItem>
     </List>
   );
-}
+};
 
 export default HeaderLinks;
