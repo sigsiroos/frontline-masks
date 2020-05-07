@@ -45,9 +45,9 @@ const HeaderLinks: React.FC<{
 
   const hoveredButtonStyles = css`
     @media (min-width: ${DESKTOP_VIEWPORT_WIDTH}px) {
+      opacity: 1.0;
       &:hover {
-        background: white !important;
-        color: ${activeLinkTextColor} !important;
+        opacity: .6;
       }
       .header-changed & {
         box-shadow: none;
