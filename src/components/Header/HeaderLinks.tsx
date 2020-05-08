@@ -43,17 +43,12 @@ const HeaderLinks: React.FC<{
     ? "white"
     : "transparent";
 
-  const hoveredButtonStyles = css`
-    @media (min-width: ${DESKTOP_VIEWPORT_WIDTH}px) {
-      opacity: 1.0;
-      &:hover {
-        opacity: .6;
-      }
-      .header-changed & {
-        box-shadow: none;
-      }
-    }
-  `;
+  const hoveredButtonStyles = (active?: boolean) =>
+    props.headerChangedFromScrolling
+      ? undefined :
+    active
+      ? css`&:hover { background-color: white !important }` :
+    undefined;
 
   return (
     <List className={classes.list}>
@@ -85,9 +80,7 @@ const HeaderLinks: React.FC<{
           component={Link}
           to="/request"
           color={activeLink === "request" ? activeLinkColor : "transparent"}
-          css={
-            props.headerChangedFromScrolling ? undefined : hoveredButtonStyles
-          }
+          css={hoveredButtonStyles(activeLink === "request")}
           className={classes.navLink}
           textColor={activeLink === "request" ? activeLinkTextColor : ""}
         >
@@ -101,9 +94,7 @@ const HeaderLinks: React.FC<{
           href="https://www.gofundme.com/f/tztm7-ppe-for-the-frontlines"
           target="_blank"
           color="transparent"
-          css={
-            props.headerChangedFromScrolling ? undefined : hoveredButtonStyles
-          }
+          css={hoveredButtonStyles()}
           className={classes.navLink}
         >
           Donate
@@ -114,9 +105,7 @@ const HeaderLinks: React.FC<{
           component={Link}
           to="/mission"
           color={activeLink === "mission" ? activeLinkColor : "transparent"}
-          css={
-            props.headerChangedFromScrolling ? undefined : hoveredButtonStyles
-          }
+          css={hoveredButtonStyles(activeLink === "mission")}
           textColor={activeLink === "mission" ? activeLinkTextColor : ""}
           className={classes.navLink}
         >
@@ -170,9 +159,7 @@ const HeaderLinks: React.FC<{
         >
           <Button
             color="transparent"
-            css={
-              props.headerChangedFromScrolling ? undefined : hoveredButtonStyles
-            }
+            css={hoveredButtonStyles()}
             href={globals?.fields.instagram}
             target="_blank"
             className={classes.navLink}
